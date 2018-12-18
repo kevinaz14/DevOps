@@ -1,7 +1,8 @@
----
-- name: Hello World!
-  hosts: all
+- name: Echo 
+  hosts: 127.0.0.1
+  connection: local
+
   tasks:
- 
-  - name: Hello World!
-shell: echo "Hi! Tower is working."
+  - name: Print debug message
+    debug:
+msg: Hello, world!
