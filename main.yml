@@ -1,3 +1,5 @@
+- hosts: localhost
+
 - name: Create virtual network
   azure_rm_virtualnetwork:
     resource_group: zuyrg00003
