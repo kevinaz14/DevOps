@@ -57,4 +57,4 @@
         offer: UbuntuServer
         publisher: Canonical
         sku: 16.04-LTS
-version: latest
+        version: latest
