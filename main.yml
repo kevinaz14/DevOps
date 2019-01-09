@@ -41,10 +41,11 @@
       subnet: testsubnet
       public_ip_name: testpublic
       security_group: testnsg
-  - name: Create VM with defaults
+  - name: Create VM
     azure_rm_virtualmachine:
       resource_group: zuyrg00003
-      name: testvm
+      name: virtuele machine
+      vm_size: Standard_B1s
       admin_username: azureuser
       admin_password: Password@123
       network_interfaces: testif
