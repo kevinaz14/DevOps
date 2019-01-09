@@ -45,7 +45,7 @@
     azure_rm_virtualmachine:
       resource_group: zuyrg00003
       name: testvm
-      vm_size: Standard_D2s_v3
+      vm_size: Standard_B1s
       admin_username: azureuser
       admin_password: Password@123
       network_interfaces: testif
