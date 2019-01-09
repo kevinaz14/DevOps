@@ -1,4 +1,5 @@
 - name: Create Azure VM
+  hosts: localhost
   connection: local
   vars:
     resource_group: zuyrg00003
