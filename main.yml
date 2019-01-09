@@ -4,7 +4,7 @@
   vars:
     resource_group: zuyrg00003
     vm_name: testvm
-    location: eastus
+    location: europe
   tasks:
   - name: Create virtual network
     azure_rm_virtualnetwork:
@@ -44,7 +44,7 @@
   - name: Create VM
     azure_rm_virtualmachine:
       resource_group: zuyrg00003
-      name: virtuele machine
+      name: testvm
       vm_size: Standard_B1s
       admin_username: azureuser
       admin_password: Password@123
