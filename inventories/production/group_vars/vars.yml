@@ -1,3 +1,4 @@
 ---
-username: azureuser
-password: Password@123
+server:
+  username: azureuser
+  password: Password@123
