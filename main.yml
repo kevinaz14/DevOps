@@ -3,17 +3,15 @@
   connection: local
   vars:
     resource_group: zuyrg00003
-    vm_name: testvm
+    vm_name: test
     location: westeu
-    include_vars:
-      file: /inventories/production/group_vars/vars.yaml
-      username: server_username
-      password: password_password  
+    username: azureuser
+    password: Password@123
   tasks:
   - name: Create virtual network
     azure_rm_virtualnetwork:
       resource_group: zuyrg00003
-      name: testvn
+      name: "{{ vm_name }}"vn
       address_prefixes: "10.0.0.0/16"
   - name: Add subnet
     azure_rm_subnet:
@@ -50,8 +48,8 @@
       resource_group: zuyrg00003
       name: testvm
       vm_size: Standard_B1s
-      admin_username: "{{ username }}"
-      admin_password: "{{ password }}"
+      admin_username: username
+      admin_password: password
       network_interfaces: testif
       image:
         offer: UbuntuServer
