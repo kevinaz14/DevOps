@@ -44,8 +44,8 @@
   - name: Create VM
     azure_rm_virtualmachine:
       resource_group: zuyrg00003
-      name: testvmfdgdfgdfg
-      vm_size: B1s
+      name: testvm
+      vm_size: Standard_B1s
       admin_username: azureuser
       admin_password: Password@123
       network_interfaces: testif
