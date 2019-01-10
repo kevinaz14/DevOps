@@ -7,8 +7,8 @@
     location: westeu
     include_vars:
       file: /inventories/production/group_vars/vars.yaml
-      username: username
-      password: password  
+      username: server_username
+      password: password_password  
   tasks:
   - name: Create virtual network
     azure_rm_virtualnetwork:
