@@ -1,11 +1,6 @@
 - name: Create Azure VM
   hosts: localhost
   connection: local
-  vars_prompt:
-    - name: "username"
-      prompt: "what is your username?"
-    - name: "wachtwoord"
-      prompt: "what is your wachtwoord?"
   vars:
     resource_group: zuyrg00003
     vm_name: testvm
@@ -51,8 +46,8 @@
       resource_group: zuyrg00003
       name: testvm
       vm_size: Standard_B1s
-      admin_username: "{{ username }}"
-      admin_password: "{{ wachtwoord }}"
+      admin_username: "{{ server.username }}"
+      admin_password: "{{ server.password }}"
       network_interfaces: testif
       image:
         offer: UbuntuServer
