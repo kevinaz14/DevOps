@@ -11,7 +11,7 @@
   - name: Create virtual network
     azure_rm_virtualnetwork:
       resource_group: zuyrg00003
-      name: "{{ vm_name }}"vn
+      name: testvn
       address_prefixes: "10.0.0.0/16"
   - name: Add subnet
     azure_rm_subnet:
