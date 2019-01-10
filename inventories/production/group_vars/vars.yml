@@ -1,4 +1,4 @@
 ---
-foo:
-  field1: one
-  field2: two
+server:
+  username: azureuser
+  password: Password@123
