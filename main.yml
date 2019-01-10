@@ -4,7 +4,7 @@
   vars:
     resource_group: zuyrg00003
     vm_name: harrypotter
-    location: westeurope
+    location: westeu
   tasks:
   - name: Create virtual network
     azure_rm_virtualnetwork:
