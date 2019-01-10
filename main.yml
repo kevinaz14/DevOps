@@ -1,6 +1,11 @@
 - name: Create Azure VM
   hosts: localhost
   connection: local
+  - name: Include vars of stuff.yaml into the 'stuff' variable (2.2).
+  include_vars:
+    file: vars.yaml
+    username: server.username
+    password: server.password
   vars:
     resource_group: zuyrg00003
     vm_name: testvm
@@ -46,8 +51,8 @@
       resource_group: zuyrg00003
       name: testvm
       vm_size: Standard_B1s
-      admin_username: "{{ server.username }}"
-      admin_password: "{{ server.password }}"
+      admin_username: "{{ username }}"
+      admin_password: "{{ password }}"
       network_interfaces: testif
       image:
         offer: UbuntuServer
