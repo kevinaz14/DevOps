@@ -1,7 +1,7 @@
 - name: Create Azure VM
   hosts: localhost
   connection: local
-  - name: Include vars of stuff.yaml into the 'stuff' variable (2.2).
+  - name: Include vars of vars.yml into the 'username' variable (2.2).
   include_vars:
     file: vars.yaml
     username: server.username
