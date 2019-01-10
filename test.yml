@@ -1,5 +1,3 @@
-  - name: Create Azure VM
-      hosts: localhost
-      connection: local
-      - debug:
-        msg: "{{ lookup('env', 'default_var_file') }}"
+hosts: localhost
+  - debug:
+    msg: "{{ lookup('env', 'default_var_file') }}"
