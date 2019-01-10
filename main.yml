@@ -37,7 +37,7 @@
     azure_rm_networkinterface:
       resource_group: zuyrg00003
       name: testif
-      virtual_network: harrypottervn
+      virtual_network: testvn
       subnet: testsubnet
       public_ip_name: testpublic
       security_group: testnsg
