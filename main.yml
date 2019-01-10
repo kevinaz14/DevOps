@@ -1,15 +1,15 @@
 - name: Create Azure VM
   hosts: localhost
   connection: local
-  - name: Include vars of vars.yml into the 'username' variable (2.2).
-  include_vars:
-    file: vars.yaml
-    username: server.username
-    password: server.password
   vars:
     resource_group: zuyrg00003
     vm_name: testvm
     location: westeu
+  - name: Include vars of vars.yml into the 'username' variable (2.2).
+    include_vars:
+      file: /inventories/production/group_vars/vars.yaml
+      username: server.username
+      password: server.password  
   tasks:
   - name: Create virtual network
     azure_rm_virtualnetwork:
