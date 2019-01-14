@@ -8,22 +8,22 @@
     username: WMA_Admin
     password: P@ssw0rd201888
   tasks:
-  - name: Create storage account
+  - name: Create storage account WEB01
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
       name: wmastorageaccountweb01
       account_type: Standard_LRS
-  - name: Create storage account
+  - name: Create storage account WEB02
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
       name: wmastorageaccountweb02
       account_type: Standard_LRS
-  - name: Create virtual network
+  - name: Create virtual network Frontend
     azure_rm_virtualnetwork:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_vn"
       address_prefixes: "10.0.0.0/16"
-  - name: Add subnet
+  - name: Add subnet Frontend
     azure_rm_subnet:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_subnet"
@@ -45,7 +45,7 @@
           access: Allow
           priority: 1001
           direction: Inbound
-  - name: Create virtual network inteface card
+  - name: Create virtual network inteface card WEB01
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_NICweb01"
@@ -53,7 +53,7 @@
       subnet: "{{ vm_name }}_subnet"
       public_ip_name: "{{ vm_name }}_publicIP"
       security_group: "{{ vm_name }}_nsg"
-  - name: Create VM
+  - name: Create VM WEB01
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}WEB01"
@@ -69,7 +69,7 @@
         sku: 2016-Datacenter
         version: latest
         
-  - name: Create virtual network inteface card
+  - name: Create virtual network inteface card WEB02
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_NICweb02"
@@ -77,7 +77,7 @@
       subnet: "{{ vm_name }}_subnet"
       public_ip_name: "{{ vm_name }}_publicIP"
       security_group: "{{ vm_name }}_nsg"
-  - name: Create VM
+  - name: Create VM WEB02
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}WEB02"
