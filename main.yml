@@ -140,7 +140,6 @@
   - name: Create a load balancer
     azure_rm_loadbalancer:
       name: "{{ vm_name }}_LoadBalancer"
-      location: "{{ location }}"
       resource_group: "{{ resource_group }}"
       public_ip: "{{ vm_name }}_publicIP"
     
