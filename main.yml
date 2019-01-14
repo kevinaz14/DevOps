@@ -11,23 +11,23 @@
   - name: Create virtual network
     azure_rm_virtualnetwork:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}vn"
+      name: "{{ vm_name }}_vn"
       address_prefixes: "10.0.0.0/16"
   - name: Add subnet
     azure_rm_subnet:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}subnet"
+      name: "{{ vm_name }}_subnet"
       address_prefix: "10.0.1.0/24"
-      virtual_network: "{{ vm_name }}vn"
+      virtual_network: "{{ vm_name }}_vn"
   - name: Create public IP address
     azure_rm_publicipaddress:
       resource_group: "{{ resource_group }}"
       allocation_method: Static
-      name: "{{ vm_name }}publicIP"
+      name: "{{ vm_name }}_publicIP"
   - name: Create Network Security Group that allows SSH
     azure_rm_securitygroup:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}nsg"
+      name: "{{ vm_name }}_nsg"
       rules:
         - name: SSH
           protocol: Tcp
@@ -38,20 +38,20 @@
   - name: Create virtual network inteface card
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}webIC01"
-      virtual_network: "{{ vm_name }}vn"
-      subnet: "{{ vm_name }}subnet"
-      public_ip_name: "{{ vm_name }}publicIP"
-      security_group: "{{ vm_name }}nsg"
+      name: "{{ vm_name }}_webIC01"
+      virtual_network: "{{ vm_name }}_vn"
+      subnet: "{{ vm_name }}_subnet"
+      public_ip_name: "{{ vm_name }}_publicIP"
+      security_group: "{{ vm_name }}_nsg"
   - name: Create VM
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}WEB01"
+      name: "{{ vm_name }}_WEB01"
       vm_size: Standard_B1s
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
-      network_interfaces: "{{ vm_name }}webIC01"
+      network_interfaces: "{{ vm_name }}_webIC01"
       image:
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
@@ -61,20 +61,20 @@
   - name: Create virtual network inteface card
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}webIC02"
-      virtual_network: "{{ vm_name }}vn"
-      subnet: "{{ vm_name }}subnet"
-      public_ip_name: "{{ vm_name }}publicIP"
-      security_group: "{{ vm_name }}nsg"
+      name: "{{ vm_name }}_webIC02"
+      virtual_network: "{{ vm_name }}_vn"
+      subnet: "{{ vm_name }}_subnet"
+      public_ip_name: "{{ vm_name }}_publicIP"
+      security_group: "{{ vm_name }}_nsg"
   - name: Create VM
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}WEB02"
+      name: "{{ vm_name }}_WEB02"
       vm_size: Standard_B1s
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
-      network_interfaces: "{{ vm_name }}webIC02"
+      network_interfaces: "{{ vm_name }}_webIC02"
       image:
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
