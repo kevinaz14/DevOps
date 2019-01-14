@@ -46,8 +46,9 @@
   - name: Create VM
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}_WEB01"
+      name: "{{ vm_name }}WEB01"
       vm_size: Standard_B1s
+      storage_account: WMA_StorageAccountWEB01
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
@@ -69,8 +70,9 @@
   - name: Create VM
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}_WEB02"
+      name: "{{ vm_name }}WEB02"
       vm_size: Standard_B1s
+      storage_account: WMA_StorageAccountWEB02
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
