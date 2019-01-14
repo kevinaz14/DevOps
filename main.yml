@@ -133,26 +133,26 @@
   - name: create load balancer
     azure_rm_loadbalancer:
       resource_group: "{{ resource_group }}"
-      name: WMALoadBalancer
+      name: testloadbalancer1
       frontend_ip_configurations:
-        - name: FrontendIPconf
-          public_ip_address: "{{ vm_name }}_publicIP"
+        - name: frontendipconf0
+          public_ip_address: testpip
       backend_address_pools:
-        - name: backendaddrpoolWEB
+        - name: backendaddrpool0
       probes:
-        - name: "{{ vm_name }}WEB02"
+        - name: prob0
           port: 80
       inbound_nat_pools:
         - name: inboundnatpool0
-          frontend_ip_configuration_name: FrontendIPconf
+          frontend_ip_configuration_name: frontendipconf0
           protocol: Tcp
           frontend_port_range_start: 80
           frontend_port_range_end: 81
           backend_port: 8080
       load_balancing_rules:
         - name: lbrbalancingrule0
-          frontend_ip_configuration: FrontendIP
-          backend_address_pool: backendaddrpoolWEB
+          frontend_ip_configuration: frontendipconf0
+          backend_address_pool: backendaddrpool0
           frontend_port: 80
           backend_port: 80
-          probe: "{{ vm_name }}WEB02"
+          probe: prob0
