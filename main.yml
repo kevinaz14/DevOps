@@ -8,6 +8,16 @@
     username: WMA_Admin
     password: P@ssw0rd201888
   tasks:
+  - name: Create storage account
+    azure_rm_storageaccount:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}_StorageAccountWEB01"
+      account_type: Standard_LRS
+  - name: Create storage account
+    azure_rm_storageaccount:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}_StorageAccountWEB02"
+      account_type: Standard_LRS
   - name: Create virtual network
     azure_rm_virtualnetwork:
       resource_group: "{{ resource_group }}"
@@ -48,7 +58,7 @@
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}WEB01"
       vm_size: Standard_B1s
-      storage_account: WMA_StorageAccountWEB01
+      storage_account: "{{ vm_name }}_StorageAccountWEB01"
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
@@ -72,7 +82,7 @@
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}WEB02"
       vm_size: Standard_B1s
-      storage_account: WMA_StorageAccountWEB02
+      storage_account: "{{ vm_name }}_StorageAccountWEB02"
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
