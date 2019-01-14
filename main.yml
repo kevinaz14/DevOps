@@ -6,7 +6,7 @@
     vm_name: WMA
     location: westeu
     username: WMA_Admin
-    password: P@ssw0rd2018
+    password: P@ssw0rd201888
   tasks:
   - name: Create virtual network
     azure_rm_virtualnetwork:
