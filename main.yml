@@ -21,7 +21,7 @@
   - name: Create storage account WMAManagement
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
-      name: wmastorageaccountmanagement
+      name: wmastorageaccountmanage
       account_type: Standard_LRS
   - name: Create virtual network Frontend
     azure_rm_virtualnetwork:
