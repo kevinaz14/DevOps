@@ -7,8 +7,8 @@
     location: westeu
     username: WMA_Admin
     password: P@ssw0rd2018
-  tasks:
   
+  tasks:
   - name: Create an availability set
     azure_rm_availabilityset:
       name: WMAavailabilitysetWEB
