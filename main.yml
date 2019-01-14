@@ -9,6 +9,11 @@
     password: P@ssw0rd2018
   tasks:
   
+  - name: Create an availability set
+    azure_rm_availabilityset:
+      name: WMAavailabilityset
+      resource_group: "{{ resource_group }}"
+    
   - name: Create storage account WEB01
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
