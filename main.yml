@@ -8,37 +8,44 @@
     username: WMA_Admin
     password: P@ssw0rd2018
   tasks:
+  
   - name: Create storage account WEB01
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
       name: wmastorageaccountweb01
       account_type: Standard_LRS
+      
   - name: Create storage account WEB02
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
       name: wmastorageaccountweb02
       account_type: Standard_LRS
+      
   - name: Create storage account WMAManagement
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
       name: wmastorageaccountmanage
       account_type: Standard_LRS
+      
   - name: Create virtual network Frontend
     azure_rm_virtualnetwork:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_vn"
       address_prefixes: "10.0.0.0/16"
+      
   - name: Add subnet Frontend
     azure_rm_subnet:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_subnet"
       address_prefix: "10.0.1.0/24"
       virtual_network: "{{ vm_name }}_vn"
+      
   - name: Create public IP address
     azure_rm_publicipaddress:
       resource_group: "{{ resource_group }}"
       allocation_method: Static
       name: "{{ vm_name }}_publicIP"
+      
   - name: Create Network Security Group that allows SSH
     azure_rm_securitygroup:
       resource_group: "{{ resource_group }}"
@@ -50,6 +57,7 @@
           access: Allow
           priority: 1001
           direction: Inbound
+          
   - name: Create virtual network interface card WEB01
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
@@ -57,6 +65,7 @@
       virtual_network: "{{ vm_name }}_vn"
       subnet: "{{ vm_name }}_subnet"
       security_group: "{{ vm_name }}_nsg"
+      
   - name: Create VM WEB01
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
@@ -80,6 +89,7 @@
       virtual_network: "{{ vm_name }}_vn"
       subnet: "{{ vm_name }}_subnet"
       security_group: "{{ vm_name }}_nsg"
+      
   - name: Create VM WEB02
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
@@ -94,7 +104,8 @@
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
         sku: 2016-Datacenter
-        version: latest       
+        version: latest    
+        
   - name: Create virtual network interface card WMAManagement
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
@@ -102,6 +113,7 @@
       virtual_network: "{{ vm_name }}_vn"
       subnet: "{{ vm_name }}_subnet"
       security_group: "{{ vm_name }}_nsg"
+      
   - name: Create VM WMAManagement
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
@@ -117,21 +129,30 @@
         publisher: MicrosoftWindowsServer
         sku: 2016-Datacenter
         version: latest
-  - name: Create a load balancer
+        
+  - name: create load balancer
     azure_rm_loadbalancer:
-      name: "{{ vm_name }}_LoadBalancer"
       resource_group: "{{ resource_group }}"
-      public_ip: "{{ vm_name }}_publicIP"
-      probe_protocol: Tcp
-      probe_port: 80
-      probe_interval: 10
-      probe_fail_count: 3
-      protocol: Tcp
-      load_distribution: Default
-      frontend_port: 80
-      backend_port: 8080
-      idle_timeout: 4
-      natpool_frontend_port_start: 1030
-      natpool_frontend_port_end: 1040
-      natpool_backend_port: 80
-      natpool_protocol: Tcp
+      name: WMALoadBalancer
+      frontend_ip_configurations:
+        - name: FrontendIPconf
+          public_ip_address: "{{ vm_name }}_publicIP"
+      backend_address_pools:
+        - name: backendaddrpoolWEB
+      probes:
+        - name: "{{ vm_name }}WEB02"
+          port: 80
+      inbound_nat_pools:
+        - name: inboundnatpool0
+          frontend_ip_configuration_name: FrontendIPconf
+          protocol: Tcp
+          frontend_port_range_start: 80
+          frontend_port_range_end: 81
+          backend_port: 8080
+      load_balancing_rules:
+        - name: lbrbalancingrule0
+          frontend_ip_configuration: FrontendIP
+          backend_address_pool: backendaddrpoolWEB
+          frontend_port: 80
+          backend_port: 80
+          probe: "{{ vm_name }}WEB02"
