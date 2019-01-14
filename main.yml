@@ -64,7 +64,7 @@
       natpool_backend_port: 80
       natpool_protocol: Tcp
   
-  - name: Create virtual network inteface card WEB01
+  - name: Create virtual network interface card WEB01
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_NICweb01"
@@ -87,7 +87,7 @@
         sku: 2016-Datacenter
         version: latest
         
-  - name: Create virtual network inteface card WEB02
+  - name: Create virtual network interface card WEB02
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_NICweb02"
