@@ -133,7 +133,7 @@
   - name: create load balancer
     azure_rm_loadbalancer:
       resource_group: "{{ resource_group }}"
-      name: testloadbalancer1
+      name: TESTbalancer
       frontend_ip_configurations:
         - name: frontendipconf0
           public_ip_address: testpip
