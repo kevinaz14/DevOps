@@ -55,7 +55,13 @@
           backend_port: 443
           backend_address_pool: backendaddrpool
           probe: probHTTPS
-
+      inbound_nat_pools:
+        - name: inboundnatpool
+          frontend_ip_configuration_name: frontendIPconf
+          protocol: Tcp
+          frontend_port_range_start: 3389
+          frontend_port_range_end: 3390
+          backend_port: 3389
     
   - name: Create storage account WEB01
     azure_rm_storageaccount:
