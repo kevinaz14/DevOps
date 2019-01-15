@@ -101,7 +101,7 @@
       rules:
         - name: RDP
           protocol: Tcp
-          source_address_prefix:
+          destination_address_prefix:
             - '10.0.1.6'
           destination_port_range: 3389
           access: Allow
@@ -109,7 +109,7 @@
           direction: Inbound
         - name: HTTPandHTTPS
           protocol: Tcp
-          source_address_prefix:
+          destination_address_prefix:
             - '10.0.1.4'
             - '10.0.1.5'
           destination_port_range:
