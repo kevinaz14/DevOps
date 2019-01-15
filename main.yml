@@ -51,14 +51,14 @@
       allocation_method: Static
       name: "{{ vm_name }}_publicIP"
       
-  - name: Create Network Security Group that allows SSH
+  - name: Create Network Security Group that allows RDP
     azure_rm_securitygroup:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_nsg"
       rules:
-        - name: SSH
+        - name: RDP
           protocol: Tcp
-          destination_port_range: 22
+          destination_port_range: 3389
           access: Allow
           priority: 1001
           direction: Inbound
