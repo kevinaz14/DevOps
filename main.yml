@@ -28,8 +28,7 @@
         - name: frontendIPconf
           public_ip_address: "{{ vm_name }}_publicIP"
       backend_address_pools:
-        - name: backendaddrpoolWEB
-        - name: backendaddrpoolMGNT
+        - name: backendaddrpool
       probes:
         - name: probHTTP
           protocol: Tcp
@@ -49,7 +48,6 @@
           backend_port: 80
           backend_address_pool: backendaddrpoolWEB
           probe: probHTTP
-      load_balancing_rules:
         - name: loadbalancingrulesHTTPS
           frontend_ip_configuration: frontendIPconf
           protocol: Tcp
