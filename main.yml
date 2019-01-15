@@ -59,8 +59,7 @@
         - name: inboundnatpool
           frontend_ip_configuration_name: frontendIPconf
           protocol: Tcp
-          frontend_port_range_start: 3389
-          frontend_port_range_end: 3390
+          service: Rdp
           backend_port: 3389
     
   - name: Create storage account WEB01
