@@ -60,6 +60,8 @@
           frontend_ip_configuration_name: frontendIPconf
           protocol: Tcp
           backend_port: 3389
+          frontend_port_range_end: 3388
+          backend_port_range_end: 3390
     
   - name: Create storage account WEB01
     azure_rm_storageaccount:
