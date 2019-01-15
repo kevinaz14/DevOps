@@ -198,6 +198,7 @@
       vm_size: Standard_B2s
       storage_account: wmastorageaccountmanage
       os_type: Windows
+      open_ports: 3389
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
       availability_set: WMAavailabilityset
