@@ -63,7 +63,7 @@
           probe: probHTTPS
         - name: loadbalancingrulesRDP
           frontend_ip_configuration: frontendIPconf
-          protcool: Tcp
+          protocol: Tcp
           frontend_port: 3389
           backend_port: 3389
           backend_address_pool: backendaddrpoolMGT
