@@ -13,6 +13,37 @@
     azure_rm_availabilityset:
       name: WMAavailabilityset
       resource_group: "{{ resource_group }}"
+      
+  - name: create load balancer
+    azure_rm_loadbalancer:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}_LoadBalancer"
+      frontend_ip_configurations:
+        - name: frontendIPconf
+          public_ip_address: "{{ vm_name }}_publicIP"
+      backend_address_pools:
+        - name: backendaddrpool
+      probes:
+        - name: probHTTP
+          protocol: Tcp
+          port: 80
+          fail_count: 3
+          interval: 15
+      load_balancing_rules:
+        - name: loadbalancingrules
+          frontend_ip_configuration: frontendIPconf
+          protocol: Tcp
+          frontend_port: 80
+          backend_port: 80
+          backend_address_pool: backendaddrpool
+          probe: probHTTP
+      inbound_nat_pools:
+        - name: inboundnatpool
+          protocol: Tcp
+          frontend_ip_configuration_name: frontendIPconf
+          frontend_port_range_start: 3389
+          frontend_port_range_end: 3389
+          backend_port: 3389
     
   - name: Create storage account WEB01
     azure_rm_storageaccount:
@@ -82,6 +113,11 @@
       virtual_network: "{{ vm_name }}_vn"
       subnet: "{{ vm_name }}_subnet"
       security_group: "{{ vm_name }}_nsg"
+      ip_configurations:
+        - name: ipconfig1
+          load_balancer_backend_address_pools:
+            - name: backendaddrpool
+              load_balancer: "{{ vm_name }}_LoadBalancer"
       
   - name: Create VM WEB01
     azure_rm_virtualmachine:
@@ -107,6 +143,11 @@
       virtual_network: "{{ vm_name }}_vn"
       subnet: "{{ vm_name }}_subnet"
       security_group: "{{ vm_name }}_nsg"
+      ip_configurations:
+        - name: ipconfig1
+          load_balancer_backend_address_pools:
+            - name: backendaddrpool
+              load_balancer: "{{ vm_name }}_LoadBalancer"
       
   - name: Create VM WEB02
     azure_rm_virtualmachine:
@@ -149,34 +190,3 @@
         publisher: MicrosoftWindowsServer
         sku: 2016-Datacenter
         version: latest
-        
-  - name: create load balancer
-    azure_rm_loadbalancer:
-      resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}_LoadBalancer"
-      frontend_ip_configurations:
-        - name: frontendIPconf
-          public_ip_address: "{{ vm_name }}_publicIP"
-      backend_address_pools:
-        - name: backendaddrpool
-      probes:
-        - name: probHTTP
-          protocol: Tcp
-          port: 80
-          fail_count: 3
-          interval: 15
-      load_balancing_rules:
-        - name: loadbalancingrules
-          frontend_ip_configuration: frontendIPconf
-          protocol: Tcp
-          frontend_port: 80
-          backend_port: 80
-          backend_address_pool: backendaddrpool
-          probe: probHTTP
-      inbound_nat_pools:
-        - name: inboundnatpool
-          protocol: Tcp
-          frontend_ip_configuration_name: frontendIPconf
-          frontend_port_range_start: 3389
-          frontend_port_range_end: 3389
-          backend_port: 3389
