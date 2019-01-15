@@ -154,31 +154,19 @@
     azure_rm_loadbalancer:
       name: "{{ vm_name }}_LoadBalancer"
       resource_group: "{{ resource_group }}"
-      public_ip: "{{ vm_name }}_publicIP"
     
   - name: create load balancer
     azure_rm_loadbalancer:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_LoadBalancer"
       frontend_ip_configurations:
-        - name: frontendipconf0
-          public_ip_address: testpip
+        - name: frontendIPconf
+          public_ip_address: "{{ vm_name }}_publicIP"
       backend_address_pools:
-        - name: backendaddrpool0
+        - name: backendaddrpool
       probes:
-        - name: prob0
-          port: 80
-      inbound_nat_pools:
-        - name: inboundnatpool0
-          frontend_ip_configuration_name: frontendipconf0
+        - name: probHTTP
           protocol: Tcp
-          frontend_port_range_start: 80
-          frontend_port_range_end: 81
-          backend_port: 8080
-      load_balancing_rules:
-        - name: lbrbalancingrule0
-          frontend_ip_configuration: frontendipconf0
-          backend_address_pool: backendaddrpool0
-          frontend_port: 80
-          backend_port: 80
-          probe: prob0
+          port: 80
+          fail_count: 3
+          interval: 15
