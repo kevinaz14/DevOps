@@ -116,7 +116,6 @@
         publisher: MicrosoftWindowsServer
         sku: 2016-Datacenter
         version: latest
-      load_balancer: "{{ vm_name }}_LoadBalancer"
         
   - name: Create virtual network interface card WEB02
     azure_rm_networkinterface:
@@ -143,7 +142,6 @@
         publisher: MicrosoftWindowsServer
         sku: 2016-Datacenter
         version: latest
-      load_balancer: "{{ vm_name }}_LoadBalancer"
         
   - name: Create virtual network interface card WMAManagement
     azure_rm_networkinterface:
@@ -170,4 +168,3 @@
         publisher: MicrosoftWindowsServer
         sku: 2016-Datacenter
         version: latest
-      load_balancer: "{{ vm_name }}_LoadBalancer"  
