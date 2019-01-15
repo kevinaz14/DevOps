@@ -11,7 +11,7 @@
   tasks:
   - name: Create an availability set
     azure_rm_availabilityset:
-      name: WMAavailabilitysetWEB
+      name: WMAavailabilityset
       resource_group: "{{ resource_group }}"
     
   - name: Create storage account WEB01
@@ -80,7 +80,7 @@
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
-      availability_set: WMAavailabilitysetWEB
+      availability_set: WMAavailabilityset
       network_interfaces: "{{ vm_name }}_NICweb01"
       image:
         offer: WindowsServer
@@ -105,7 +105,7 @@
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
-      availability_set: WMAavailabilitysetWEB
+      availability_set: WMAavailabilityset
       network_interfaces: "{{ vm_name }}_NICweb02"
       image:
         offer: WindowsServer
@@ -130,6 +130,7 @@
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
+      availability_set: WMAavailabilityset
       network_interfaces: "{{ vm_name }}_NICmanagement"
       image:
         offer: WindowsServer
