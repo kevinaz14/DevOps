@@ -64,7 +64,7 @@
           access: Allow
           priority: 1001
           direction: Inbound
-        - name: Allow HTTP/HTTPS
+        - name: Allow 'HTTP/HTTPS'
           protocol: Tcp
           source_address_prefix:
             - '10.0.1.4'
