@@ -110,6 +110,7 @@
       admin_password: "{{ password }}"
       availability_set: WMAavailabilityset
       network_interfaces: "{{ vm_name }}_NICweb01"
+      load_balancer: "{{ vm_name }}_LoadBalancer"
       image:
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
@@ -136,6 +137,7 @@
       admin_password: "{{ password }}"
       availability_set: WMAavailabilityset
       network_interfaces: "{{ vm_name }}_NICweb02"
+      load_balancer: "{{ vm_name }}_LoadBalancer"
       image:
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
@@ -162,6 +164,7 @@
       admin_password: "{{ password }}"
       availability_set: WMAavailabilityset
       network_interfaces: "{{ vm_name }}_NICmanagement"
+      load_balancer: "{{ vm_name }}_LoadBalancer"
       image:
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
