@@ -28,7 +28,8 @@
         - name: frontendIPconf
           public_ip_address: "{{ vm_name }}_publicIP"
       backend_address_pools:
-        - name: backendaddrpool
+        - name: backendaddrpoolWEB
+        - name: backendaddrpoolMGT
       probes:
         - name: probHTTP
           protocol: Tcp
@@ -40,28 +41,33 @@
           port: 443
           fail_count: 3
           interval: 15
+        - name: probRDP
+          protocol: Tcp
+          port: 3389
+          fail_count: 3
+          interval: 15
       load_balancing_rules:
         - name: loadbalancingrulesHTTP
           frontend_ip_configuration: frontendIPconf
           protocol: Tcp
           frontend_port: 80
           backend_port: 80
-          backend_address_pool: backendaddrpool
+          backend_address_pool: backendaddrpoolWEB
           probe: probHTTP
         - name: loadbalancingrulesHTTPS
           frontend_ip_configuration: frontendIPconf
           protocol: Tcp
           frontend_port: 443
           backend_port: 443
-          backend_address_pool: backendaddrpool
+          backend_address_pool: backendaddrpoolWEB
           probe: probHTTPS
-      inbound_nat_pools:
-        - name: inboundnatpool0
-          frontend_ip_configuration_name: frontendIPconf
-          protocol: Tcp
-          backend_port: 3389
-          frontend_port_range_start: 3388
-          frontend_port_range_end: 3390
+        - name: loadbalancingrulesRDP
+          frontend_ip_configuration: frontendIPconf
+          protcool: Tcp
+          frontend_port: 3389
+          back-end_port: 3389
+          backend_Address_pool: backendaddrpoolMGT
+          probe: probRDP
     
   - name: Create storage account WEB01
     azure_rm_storageaccount:
@@ -128,7 +134,7 @@
       ip_configurations:
         - name: ipconfig1
           load_balancer_backend_address_pools:
-            - name: backendaddrpool
+            - name: backendaddrpoolWEB
               load_balancer: "{{ vm_name }}_LoadBalancer"
       
   - name: Create VM WEB01
@@ -158,7 +164,7 @@
       ip_configurations:
         - name: ipconfig1
           load_balancer_backend_address_pools:
-            - name: backendaddrpool
+            - name: backendaddrpoolWEB
               load_balancer: "{{ vm_name }}_LoadBalancer"
       
   - name: Create VM WEB02
@@ -188,7 +194,7 @@
       ip_configurations:
       - name: ipconfig1
         load_balancer_backend_address_pools:
-          - name: backendaddrpool
+          - name: backendaddrpoolMGT
             load_balancer: "{{ vm_name }}_LoadBalancer"
       
   - name: Create VM WMAManagement
