@@ -23,7 +23,7 @@
   - name: Create storage account WEB02
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
-      name: wmastorageaccountweb022
+      name: wmastorageaccountweb02
       account_type: Standard_LRS
       
   - name: Create storage account WMAManagement
@@ -113,7 +113,7 @@
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}WEB02"
       vm_size: Standard_B1s
-      storage_account: wmastorageaccountweb022
+      storage_account: wmastorageaccountweb02
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
