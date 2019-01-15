@@ -187,7 +187,7 @@
       virtual_network: "{{ vm_name }}_vn"
       subnet: "{{ vm_name }}_subnet"
       security_group: "{{ vm_name }}_nsg"
-    ip_configurations:
+      ip_configurations:
       - name: ipconfig1
         load_balancer_backend_address_pools:
           - name: backendaddrpool
