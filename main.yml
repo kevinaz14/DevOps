@@ -55,12 +55,10 @@
           backend_port: 443
           backend_address_pool: backendaddrpool
           probe: probHTTPS
-      inbound_nat_pools:
-        - name: inboundnatpool
-          frontend_ip_configuration_name: frontendIPconf
-          protocol: Tcp
-          service: Rdp
-          backend_port: 3389
+      natpool_frontend_port_start: 1030
+      natpool_frontend_port_end: 1040
+      natpool_backend_port: 80
+      natpool_protocol: Tcp
     
   - name: Create storage account WEB01
     azure_rm_storageaccount:
