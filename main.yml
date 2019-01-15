@@ -150,10 +150,7 @@
         sku: 2016-Datacenter
         version: latest
   
-  - name: Create a load balancer
-    azure_rm_loadbalancer:
-      name: "{{ vm_name }}_LoadBalancer"
-      resource_group: "{{ resource_group }}"
+
     
   - name: create load balancer
     azure_rm_loadbalancer:
