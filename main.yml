@@ -46,14 +46,14 @@
           protocol: Tcp
           frontend_port: 80
           backend_port: 80
-          backend_address_pool: backendaddrpoolWEB
+          backend_address_pool: backendaddrpool
           probe: probHTTP
         - name: loadbalancingrulesHTTPS
           frontend_ip_configuration: frontendIPconf
           protocol: Tcp
           frontend_port: 443
           backend_port: 443
-          backend_address_pool: backendaddrpoolWEB
+          backend_address_pool: backendaddrpool
           probe: probHTTPS
       inbound_nat_pools:
         - name: inboundnatpool0
