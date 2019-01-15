@@ -65,8 +65,8 @@
           frontend_ip_configuration: frontendIPconf
           protcool: Tcp
           frontend_port: 3389
-          back-end_port: 3389
-          backend_Address_pool: backendaddrpoolMGT
+          backend_port: 3389
+          backend_address_pool: backendaddrpoolMGT
           probe: probRDP
     
   - name: Create storage account WEB01
