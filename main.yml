@@ -165,10 +165,3 @@
         publisher: MicrosoftWindowsServer
         sku: 2016-Datacenter
         version: latest
-
-  - local_action:
-      module: cs_loadbalancer_rule_member
-      name: WMAavailabilityset
-      vms:
-        - "{{ vm_name }}WEB01"
-        - "{{ vm_name }}WEB02"
