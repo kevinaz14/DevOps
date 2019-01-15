@@ -129,7 +129,7 @@
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}WEB01"
-      vm_size: Standard_B1s
+      vm_size: Standard_B2s
       storage_account: wmastorageaccountweb01
       os_type: Windows
       admin_username: "{{ username }}"
@@ -159,7 +159,7 @@
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}WEB02"
-      vm_size: Standard_B1s
+      vm_size: Standard_B2s
       storage_account: wmastorageaccountweb02
       os_type: Windows
       admin_username: "{{ username }}"
@@ -189,7 +189,7 @@
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}Management"
-      vm_size: Standard_B1s
+      vm_size: Standard_B2s
       storage_account: wmastorageaccountmanage
       os_type: Windows
       admin_username: "{{ username }}"
