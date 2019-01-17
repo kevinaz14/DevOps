@@ -104,13 +104,13 @@
     azure_rm_virtualnetwork:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_vnFrontend"
-      address_prefixes: "10.0.0.0/16"
+      address_prefixes: "10.0.1.0/16"
       
   - name: Create virtual network Backend
     azure_rm_virtualnetwork:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_vnBackend"
-      address_prefixes: "10.0.0.0/16"
+      address_prefixes: "10.0.2.0/16"
       
   - name: Add subnet Frontend
     azure_rm_subnet:
