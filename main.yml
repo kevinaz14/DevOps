@@ -126,6 +126,32 @@
       address_prefix: "10.0.2.0/24"
       virtual_network: "{{ vm_name }}_vnBackend"
       
+  - name: Create virtual network peering
+    azure_rm_virtualnetworkpeering:
+      resource_group: "{{ resource_group }}"
+      name: vnet_peerFrontendtoBackend
+      virtual_network: "{{ vm_name }}_vnFrontend"
+      remote_virtual_network:
+        resource_group: "{{ resource_group }}"
+        name: "{{ vm_name }}_vnBackend"
+      allow_virtual_network_access: true
+      allow_forwarded_traffic: false
+      allow_gateway_transit: false
+      use_remote_gateways: false
+      
+  - name: Create virtual network peering
+    azure_rm_virtualnetworkpeering:
+      resource_group: "{{ resource_group }}"
+      name: vnet_peerBackendtoFrontend
+      virtual_network: "{{ vm_name }}_vnBackend"
+      remote_virtual_network:
+        resource_group: "{{ resource_group }}"
+        name: "{{ vm_name }}_vnFrontend"
+      allow_virtual_network_access: true
+      allow_forwarded_traffic: false
+      allow_gateway_transit: false
+      use_remote_gateways: false
+      
   - name: Create Network Security Group that allows RDP
     azure_rm_securitygroup:
       resource_group: "{{ resource_group }}"
