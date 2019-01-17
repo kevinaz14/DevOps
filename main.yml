@@ -84,7 +84,7 @@
   - name: Create storage account WMAManagement
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
-      name: wmastorageaccountmanage
+      name: wmastorageaccountmngnt
       account_type: Standard_LRS
       
   - name: Create storage account WMADC01
@@ -116,7 +116,7 @@
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_subnetFrontend"
       address_prefix: "10.0.1.0/24"
-      virtual_network: "{{ vm_name }}_vn"
+      virtual_network: "{{ vm_name }}_vnFrontend"
       
   - name: Add subnet Backend
     azure_rm_subnet:
