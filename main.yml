@@ -251,7 +251,7 @@
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}Management"
       vm_size: Standard_B2s
-      storage_account: wmastorageaccountmanage
+      storage_account: wmastorageaccountmngnt
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
