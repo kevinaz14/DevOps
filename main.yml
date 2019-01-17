@@ -177,9 +177,9 @@
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_NICweb01"
-      virtual_network: "{{ vm_name }}_vn"
-      subnet: "{{ vm_name }}_subnet"
-      security_group: "{{ vm_name }}_nsg"
+      virtual_network: "{{ vm_name }}_vnFrontend"
+      subnet: "{{ vm_name }}_subnetFrontend"
+      security_group: "{{ vm_name }}_nsgFrontend"
       ip_configurations:
         - name: ipconfig1
           load_balancer_backend_address_pools:
@@ -207,9 +207,9 @@
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_NICweb02"
-      virtual_network: "{{ vm_name }}_vn"
-      subnet: "{{ vm_name }}_subnet"
-      security_group: "{{ vm_name }}_nsg"
+      virtual_network: "{{ vm_name }}_vnFrontend"
+      subnet: "{{ vm_name }}_subnetFrontend"
+      security_group: "{{ vm_name }}_nsgFrontend"
       ip_configurations:
         - name: ipconfig1
           load_balancer_backend_address_pools:
@@ -237,9 +237,9 @@
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_NICmanagement"
-      virtual_network: "{{ vm_name }}_vn"
-      subnet: "{{ vm_name }}_subnet"
-      security_group: "{{ vm_name }}_nsg"
+      virtual_network: "{{ vm_name }}_vnFrontend"
+      subnet: "{{ vm_name }}_subnetFrontend"
+      security_group: "{{ vm_name }}_nsgFrontend"
       ip_configurations:
       - name: ipconfig1
         load_balancer_backend_address_pools:
