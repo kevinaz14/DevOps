@@ -161,7 +161,7 @@
             - '10.0.2.5'
           destination_port_range: 22
           access: Allow
-          priority: 1001
+          priority: 1000
           direction: Inbound
         - name: RDP
           protocol: Tcp
