@@ -150,6 +150,17 @@
           access: Allow
           priority: 102
           
+  - name: Update virtual network peering (idempotent)
+    azure_rm_virtualnetworkpeering:
+      resource_group: "{{ resource_group }}"
+      name: "{{ peering_name }}"
+      virtual_network: "{{ vnetname1 }}"
+      remote_virtual_network:
+        resource_group: "{{ resource_group_secondary }}"
+        name: "{{ vnetname2 }}"
+      allow_virtual_network_access: false
+      allow_forwarded_traffic: true
+          
   - name: Create Network Security Group that allows SSH
     azure_rm_securitygroup:
       resource_group: "{{ resource_group }}"
