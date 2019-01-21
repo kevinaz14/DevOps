@@ -127,7 +127,7 @@
       virtual_network: "{{ vm_name }}_vnBackend"
       
   - name: Create virtual network peering
-    azure_rm_virtualnetworkpeering:
+    azure_rm_vnetpeering:
       resource_group: "{{ resource_group }}"
       name: vnet_peerFrontendtoBackend
       virtual_network: "{{ vm_name }}_vnFrontend"
@@ -140,7 +140,7 @@
       use_remote_gateways: false
       
   - name: Create virtual network peering
-    azure_rm_virtualnetworkpeering:
+    azure_rm_vnetpeering:
       resource_group: "{{ resource_group }}"
       name: vnet_peerBackendtoFrontend
       virtual_network: "{{ vm_name }}_vnBackend"
