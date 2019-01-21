@@ -14,16 +14,12 @@
       name: WMAavailabilityset
       resource_group: "{{ resource_group }}"
       
-  - name: Create virtual network peering
+  - name: Delete the virtual network peering
     azure_rm_virtualnetworkpeering:
       resource_group: myResourceGroup1
       name: vnet_peer1
       virtual_network: myVnet1
-      remote_virtual_network:
-        resource_group: myResourceGroup2
-        name: myVnet2
-      allow_virtual_network_access: false
-      allow_forwarded_traffic: true
+      state: absent
       
   - name: Create public IP address
     azure_rm_publicipaddress:
