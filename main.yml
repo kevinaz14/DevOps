@@ -14,6 +14,17 @@
       name: WMAavailabilityset
       resource_group: "{{ resource_group }}"
       
+  - name: Create virtual network peering
+    azure_rm_virtualnetworkpeering:
+      resource_group: myResourceGroup1
+      name: vnet_peer1
+      virtual_network: myVnet1
+      remote_virtual_network:
+        resource_group: myResourceGroup2
+        name: myVnet2
+      allow_virtual_network_access: false
+      allow_forwarded_traffic: true
+      
   - name: Create public IP address
     azure_rm_publicipaddress:
       resource_group: "{{ resource_group }}"
@@ -125,17 +136,6 @@
       name: "{{ vm_name }}_subnetBackend"
       address_prefix: "10.0.2.0/24"
       virtual_network: "{{ vm_name }}_vnBackend"
-      
-  - name: Create virtual network peering
-    azure_rm_virtualnetworkpeering:
-      resource_group: myResourceGroup1
-      name: vnet_peer1
-      virtual_network: myVnet1
-      remote_virtual_network:
-        resource_group: myResourceGroup2
-        name: myVnet2
-      allow_virtual_network_access: false
-      allow_forwarded_traffic: true
       
   - name: Create Network Security Group that allows RDP
     azure_rm_securitygroup:
