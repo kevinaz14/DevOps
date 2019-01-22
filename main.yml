@@ -165,13 +165,13 @@
           protocol: Tcp
           source_address_prefix:
             - '10.0.1.4'
-            - '10.0.1.5' 
+            - '10.0.1.5'
           destination_address_prefix:
             - '10.0.2.4'
             - '10.0.2.5'
           destination_port_range: 22
           access: Allow
-          priority: 1003
+          priority: 1001
           direction: Outbound
         
   - name: Create Network Security Group Backend
@@ -201,7 +201,7 @@
           destination_port_range: 22
           access: Allow
           priority: 1001
-          direction: Outbound
+          direction: Inbound
         - name: SSHoutbound
           protocol: Tcp
           source_address_prefix:
