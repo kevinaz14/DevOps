@@ -361,7 +361,7 @@
       remote_virtual_network:
         resource_group: "{{ resource_group }}"
         name: "{{ vm_name }}_vnBackend"
-      allow_virtual_network_access: false
+      allow_virtual_network_access: true
       allow_forwarded_traffic: false
       
   - name: Create virtual network peering Frontend
@@ -372,7 +372,7 @@
       remote_virtual_network:
         resource_group: "{{ resource_group }}"
         name: "{{ vm_name }}_vnFrontend"
-      allow_virtual_network_access: false
+      allow_virtual_network_access: true
       allow_forwarded_traffic: false
       
   ignore_errors: yes
