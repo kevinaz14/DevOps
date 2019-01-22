@@ -105,7 +105,12 @@ id:
         id: /subscriptions/xxxx/resourceGroups/xxxx/providers/Microsoft.Network/virtualNetworks/xxxx/virtualNetworkPeerings/peer1
 '''
 
-
+try:
+    from msrestazure.azure_exceptions import CloudError
+    from msrest.polling import LROPoller
+except ImportError:
+    # This is handled in azure_rm_common
+    pass
 
 from ansible.module_utils.azure_rm_common import AzureRMModuleBase, format_resource_id
 
