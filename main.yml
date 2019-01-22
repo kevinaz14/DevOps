@@ -226,7 +226,16 @@
       allow_virtual_network_access: false
       allow_forwarded_traffic: false
       
-
+  - name: Create virtual network peering Backend
+    azure_rm_virtualnetworkpeering:
+      resource_group: "{{ resource_group }}"
+      name: vnetpeerBackend
+      virtual_network: "{{ vm_name }}_vnBackend"
+      remote_virtual_network:
+        resource_group: "{{ resource_group }}"
+        name: "{{ vm_name }}_vnFrontend"
+      allow_virtual_network_access: false
+      allow_forwarded_traffic: false
      
   - name: Create virtual network interface card WEB01
     azure_rm_networkinterface:
