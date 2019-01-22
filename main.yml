@@ -216,7 +216,7 @@
           direction: Outbound
   
   - name: Create virtual network peering
-      azure_rm_virtualnetworkpeering:
+    azure_rm_virtualnetworkpeering:
       resource_group: "{{ resource_group }}"
       name: vnet_peer1
       virtual_network: "{{ vm_name }}_vnFrontend"
