@@ -374,3 +374,5 @@
         name: "{{ vm_name }}_vnFrontend"
       allow_virtual_network_access: false
       allow_forwarded_traffic: false
+      
+  ignore_errors: yes
