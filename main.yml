@@ -173,8 +173,7 @@
           access: Allow
           priority: 1003
           direction: Outbound
-
-          
+        
   - name: Create Network Security Group Backend
     azure_rm_securitygroup:
       resource_group: "{{ resource_group }}"
