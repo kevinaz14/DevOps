@@ -141,7 +141,7 @@
             - 443
           access: Allow
           priority: 102
-          direction: inbound
+          direction: Inbound
         - name: RDPinbound
           protocol: Tcp
           destination_address_prefix:
