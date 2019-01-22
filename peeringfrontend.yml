@@ -1,1 +1,7 @@
-
+- name: Create peering frontend
+  hosts: localhost
+  connection: local
+  vars:
+    resource_group: zuyrg00003
+    vm_name: WMA
+    location: westeu
