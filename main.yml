@@ -214,17 +214,17 @@
           access: Allow
           priority: 1002
           direction: Outbound
-          
+  
   - name: Create virtual network peering
-    azure_rm_virtualnetworkpeering:
-      resource_group: "{{ resource_group }}"
-      name: vnetpeerFrontend
-      virtual_network: "{{ vm_name }}_vnFrontend"
-      remote_virtual_network:
+      azure_rm_virtualnetworkpeering:
         resource_group: "{{ resource_group }}"
-        name: "{{ vm_name }}_vnBackend"
-      allow_virtual_network_access: false
-      allow_forwarded_traffic: false
+        name: vnet_peer1
+        virtual_network: "{{ vm_name }}_vnFrontend"
+        remote_virtual_network:
+          resource_group: "{{ resource_group }}"
+          name: "{{ vm_name }}_vnBackend"
+        allow_virtual_network_access: false
+        allow_forwarded_traffic: true
      
   - name: Create virtual network interface card WEB01
     azure_rm_networkinterface:
