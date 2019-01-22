@@ -1,20 +1,11 @@
----
-- name: Create peering frontend
-  hosts: localhost
-  connection: local
-  vars:
-    resource_group: zuyrg00003
-    vm_name: WMA
-    location: westeu
-
-  tasks:
-  - name: Create virtual network peering Frontend
-    azure_rm_virtualnetworkpeering:
+tasks:
+- name: Create virtual network peering Frontend
+  azure_rm_virtualnetworkpeering:
+    resource_group: "{{ resource_group }}"
+    name: vnetpeerFrontend
+    virtual_network: "{{ vm_name }}_vnFrontend"
+    remote_virtual_network:
       resource_group: "{{ resource_group }}"
-      name: vnetpeerFrontend
-      virtual_network: "{{ vm_name }}_vnFrontend"
-      remote_virtual_network:
-        resource_group: "{{ resource_group }}"
-        name: "{{ vm_name }}_vnBackend"
-      allow_virtual_network_access: false
-      allow_forwarded_traffic: false
+      name: "{{ vm_name }}_vnBackend"
+    allow_virtual_network_access: false
+    allow_forwarded_traffic: false
