@@ -6,7 +6,8 @@
     vm_name: WMA
     location: westeu
 
-- name: Create virtual network peering Frontend
+  tasks:
+  - name: Create virtual network peering Frontend
     azure_rm_virtualnetworkpeering:
       resource_group: "{{ resource_group }}"
       name: vnetpeerFrontend
@@ -15,4 +16,4 @@
         resource_group: "{{ resource_group }}"
         name: "{{ vm_name }}_vnBackend"
       allow_virtual_network_access: false
-allow_forwarded_traffic: false
+      allow_forwarded_traffic: false
