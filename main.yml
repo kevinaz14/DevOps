@@ -368,7 +368,7 @@
     azure_rm_virtualnetworkpeering:
       resource_group: "{{ resource_group }}"
       name: vnetpeerFrontend
-      virtual_network:"{{ vm_name }}_vnBackend"
+      virtual_network: "{{ vm_name }}_vnBackend"
       remote_virtual_network:
         resource_group: "{{ resource_group }}"
         name: "{{ vm_name }}_vnFrontend"
