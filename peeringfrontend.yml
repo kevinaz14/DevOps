@@ -1,4 +1,4 @@
-- hosts: 10.0.1.4
+- hosts: webservers
   tasks:
     - name: Install IIS (Web-Server only)
       win_feature:
