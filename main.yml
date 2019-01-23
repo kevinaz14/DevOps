@@ -363,6 +363,7 @@
         name: "{{ vm_name }}_vnBackend"
       allow_virtual_network_access: true
       allow_forwarded_traffic: false
+      ignore_errors: yes
       
   - name: Create virtual network peering Frontend
     azure_rm_virtualnetworkpeering:
@@ -374,5 +375,4 @@
         name: "{{ vm_name }}_vnFrontend"
       allow_virtual_network_access: true
       allow_forwarded_traffic: false
-      
-  ignore_errors: yes
+      ignore_errors: yes
