@@ -238,7 +238,7 @@
     wait_for:
       port: 5986
       host: '{{azure_vm.properties.networkProfile.networkInterfaces[0].properties.ipConfigurations[0].properties.publicIPAddress.properties.ipAddress}}'
-    timeout: 600
+      timeout: 600
         
   - name: Create virtual network interface card WEB02
     azure_rm_networkinterface:
