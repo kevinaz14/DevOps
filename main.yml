@@ -237,7 +237,7 @@
   - name: wait for the WinRM port to come online
     wait_for:
       port: 5986
-      host: '{{azure_vm.properties.networkProfile.networkInterfaces[0].properties.ipConfigurations[0].properties.publicIPAddress.properties.ipAddress}}'
+      host: '{{azure_vm.properties.networkProfile.networkInterfaces[0].properties.ipConfigurations[0].properties."{{ vm_name }}_publicIP".properties.ipAddress}}'
       timeout: 600
         
   - name: Create virtual network interface card WEB02
