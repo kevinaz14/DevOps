@@ -1,4 +1,4 @@
-- hosts: test
+- hosts: webservers
   tasks:
     - name: Install IIS (Web-Server only)
       win_feature:
