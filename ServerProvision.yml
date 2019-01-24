@@ -8,7 +8,7 @@
     - name: create Temp directory
       win_file:
         path: C:\temp
-        state: direcctory
+        state: directory
     
     - name: Copy certificate
       win_copy:
