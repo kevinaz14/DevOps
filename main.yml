@@ -411,7 +411,7 @@
       allow_virtual_network_access: true
       allow_forwarded_traffic: false
       
-  - name: Create virtual network peering Frontend
+  - name: Create virtual network peering Backend
     azure_rm_virtualnetworkpeering:
       resource_group: "{{ resource_group }}"
       name: vnetpeerBackend
