@@ -20,8 +20,6 @@
         path: C:\temp\wma.westeurope.cloudapp.azure.com.pfx
         state: present
         password: P@ssw0rd2018
-      become: yes
-      become_method: runas
       
     - name: Add HTTPS binding
       win_iis_webbinding:
