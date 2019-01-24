@@ -15,12 +15,17 @@
       name: WMAavailabilityset
       resource_group: "{{ resource_group }}"
       
-  - name: Create public IP address
+  - name: Create public IP address LoadBalancer
     azure_rm_publicipaddress:
       resource_group: "{{ resource_group }}"
       allocation_method: Static
-      name: "{{ vm_name }}_publicIP"
-      domain_name: wma
+      name: "{{ vm_name }}_publicIPLB"
+      
+  - name: Create public IP address Ansible
+    azure_rm_publicipaddress:
+      resource_group: "{{ resource_group }}"
+      allocation_method: Static
+      name: "{{ vm_name }}_publicIPAnsible"
       
   - name: create load balancer
     azure_rm_loadbalancer:
@@ -81,6 +86,12 @@
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
       name: wmastorageaccountweb02
+      account_type: Standard_LRS
+      
+  - name: Create storage account Ansible
+    azure_rm_storageaccount:
+      resource_group: "{{ resource_group }}"
+      name: wmastorageaccountansible
       account_type: Standard_LRS
       
   - name: Create storage account WMAManagement
@@ -317,6 +328,30 @@
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
         sku: 2016-Datacenter
+        version: latest
+        
+  - name: Create virtual network interface card WMA-Ansible
+    azure_rm_networkinterface:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}_NICansible"
+      virtual_network: "{{ vm_name }}_vnFrontend"
+      subnet: "{{ vm_name }}_subnetFrontend"
+      security_group: "{{ vm_name }}_nsgFrontend"
+      
+  - name: Create VM WMA-Ansible
+    azure_rm_virtualmachine:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}-Ansible"
+      vm_size: Standard_B2s
+      storage_account: wmastorageaccountansible
+      os_type: Linux
+      admin_username: "{{ username }}"
+      admin_password: "{{ password }}"
+      network_interfaces: "{{ vm_name }}_NICansible"
+      image:
+        offer: UbuntuServer
+        publisher: Canonical
+        sku: 16.04-LTS
         version: latest
         
   - name: Create virtual network interface card WMADC01
