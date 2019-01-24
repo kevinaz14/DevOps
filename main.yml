@@ -126,6 +126,12 @@
       name: "{{ vm_name }}_vnBackend"
       address_prefixes: "10.0.2.0/24"
       
+  - name: Create virtual network Ansible
+    azure_rm_virtualnetwork:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}_vnAnsible"
+      address_prefixes: "10.0.3.0/24"
+      
   - name: Add subnet Frontend
     azure_rm_subnet:
       resource_group: "{{ resource_group }}"
@@ -139,6 +145,13 @@
       name: "{{ vm_name }}_subnetBackend"
       address_prefix: "10.0.2.0/24"
       virtual_network: "{{ vm_name }}_vnBackend"
+      
+  - name: Add subnet Ansible
+    azure_rm_subnet:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}_subnetAnsible"
+      address_prefix: "10.0.2.0/24"
+      virtual_network: "{{ vm_name }}_vnAnsible"
       
   - name: Create Network Security Group Frontend
     azure_rm_securitygroup:
@@ -216,6 +229,22 @@
 #          access: Allow
 #          priority: 1003
 #          direction: Inbound
+
+  - name: Create Network Security Group Ansible
+    azure_rm_securitygroup:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}_nsgAnsible"
+      rules:
+        - name: HTTPandHTTPS
+          protocol: Tcp
+          destination_address_prefix:
+            - '10.0.3.4'
+          destination_port_range:
+            - 80
+            - 443
+          access: Allow
+          priority: 102
+          direction: Inbound
      
   - name: Create virtual network interface card WEB01
     azure_rm_networkinterface:
@@ -453,11 +482,33 @@
       allow_virtual_network_access: true
       allow_forwarded_traffic: false
       
+  - name: Create virtual network peering Frontend
+    azure_rm_virtualnetworkpeering:
+      resource_group: "{{ resource_group }}"
+      name: vnetpeerFrontend
+      virtual_network: "{{ vm_name }}_vnFrontend"
+      remote_virtual_network:
+        resource_group: "{{ resource_group }}"
+        name: "{{ vm_name }}_vnAnsible"
+      allow_virtual_network_access: true
+      allow_forwarded_traffic: false
+      
   - name: Create virtual network peering Backend
     azure_rm_virtualnetworkpeering:
       resource_group: "{{ resource_group }}"
       name: vnetpeerBackend
       virtual_network: "{{ vm_name }}_vnBackend"
+      remote_virtual_network:
+        resource_group: "{{ resource_group }}"
+        name: "{{ vm_name }}_vnFrontend"
+      allow_virtual_network_access: true
+      allow_forwarded_traffic: false
+      
+  - name: Create virtual network peering Ansible
+    azure_rm_virtualnetworkpeering:
+      resource_group: "{{ resource_group }}"
+      name: vnetpeerAnsible
+      virtual_network: "{{ vm_name }}_vnAnsible"
       remote_virtual_network:
         resource_group: "{{ resource_group }}"
         name: "{{ vm_name }}_vnFrontend"
