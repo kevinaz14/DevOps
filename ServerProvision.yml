@@ -50,7 +50,7 @@
       win_reboot:
       when: active_directory_controllers.reboot_required
       
-- hosts: domeincontrollers
+- hosts: memberservers
   tasks:
     - name: Add server to domain
       win_domain_membership:
