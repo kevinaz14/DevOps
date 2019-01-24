@@ -4,6 +4,12 @@
       win_feature:
         name: Web-Server
         state: present
+        
+    - name: create Temp directory
+      win_file:
+        path: C:\temp
+        state: direcctory
+    
     - name: Copy certificate
       win_copy:
         src: /home/WMA_Admin/wma.westeurope.cloudapp.azure.com.pfx
