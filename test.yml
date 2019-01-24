@@ -1,3 +1,0 @@
-hosts: localhost
-  - debug:
-    msg: "{{ lookup('env', 'default_var_file') }}"
