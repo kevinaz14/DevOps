@@ -30,3 +30,22 @@
         ssl_flags: 1
         certificate_hash: 712a3ccf4cf6ecb8747722b972ff6b0a291ac2b0
         state: present
+        
+- hosts: domeincontrollers
+  tasks:
+    - name: Install AD-Domain-Services feature
+      win_feature: >
+        name=AD-Domain-Services
+        include_management_tools=yes
+        include_sub_features=yes
+        state=present
+  
+    - name: Create Active Directory Domain Controller
+      win_domain:
+        dns_domain_name: wma.local
+        safe_mode_password: P@ssw0rd2018
+      register: active_directory_controllers
+
+    - name: Reboot once Domain Controller is created
+      win_reboot:
+      when: active_directory_controllers.reboot_required
