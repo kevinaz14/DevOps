@@ -6,7 +6,6 @@
         hostname: WMAWEB02
         domain_admin_user: WMA_Admin@wma.local
         domain_admin_password: P@ssw0rd2018
-        domain_ou_path: "OU=Windows,OU=Servers,DC=wma,DC=local"
         state: domain
       register: domain_state
 
