@@ -233,7 +233,7 @@
       virtual_network: "{{ vm_name }}_vnFrontend"
       subnet: "{{ vm_name }}_subnetFrontend"
       security_group: "{{ vm_name }}_nsgFrontend"
-      dns_servers: 10.0.2.5
+      dns_servers: 10.0.2.4
       ip_configurations:
         - name: ipconfig1
           load_balancer_backend_address_pools:
@@ -275,7 +275,7 @@
       virtual_network: "{{ vm_name }}_vnFrontend"
       subnet: "{{ vm_name }}_subnetFrontend"
       security_group: "{{ vm_name }}_nsgFrontend"
-      dns_servers: 10.0.2.5
+      dns_servers: 10.0.2.4
       ip_configurations:
         - name: ipconfig1
           load_balancer_backend_address_pools:
@@ -317,7 +317,7 @@
       virtual_network: "{{ vm_name }}_vnFrontend"
       subnet: "{{ vm_name }}_subnetFrontend"
       security_group: "{{ vm_name }}_nsgFrontend"
-      dns_servers: 10.0.2.5
+      dns_servers: 10.0.2.4
       ip_configurations:
       - name: ipconfig1
         load_balancer_backend_address_pools:
@@ -361,7 +361,7 @@
       subnet: "{{ vm_name }}_subnetFrontend"
       security_group: "{{ vm_name }}_nsgFrontend"
       public_ip_address_name: "{{ vm_name }}_publicIPAnsible"
-      dns_servers: 10.0.2.5
+      dns_servers: 10.0.2.4
       
   - name: Create VM WMA-Ansible
     azure_rm_virtualmachine:
@@ -422,7 +422,7 @@
       virtual_network: "{{ vm_name }}_vnBackend"
       subnet: "{{ vm_name }}_subnetBackend"
       security_group: "{{ vm_name }}_nsgBackend"
-      dns_servers: 10.0.2.5
+      dns_servers: 10.0.2.4
       
   - name: Create VM WMADB01
     azure_rm_virtualmachine:
