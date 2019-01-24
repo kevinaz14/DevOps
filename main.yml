@@ -150,6 +150,7 @@
           destination_address_prefix:
             - '10.0.1.4'
             - '10.0.1.5'
+            - '10.0.1.7'
           destination_port_range:
             - 80
             - 443
@@ -164,17 +165,12 @@
           access: Allow
           priority: 1001
           direction: Inbound
-        - name: AnsibleConnection
+        - name: SSH
           protocol: Tcp
           destination_address_prefix:
-            - '10.0.1.4'
-            - '10.0.1.5'
-            - '10.0.1.6'
+            - '10.0.1.7'
           destination_port_range:
-            - 80
-            - 443
-            - 5985
-            - 5986
+            - 22
           access: Allow
           priority: 1003
           direction: Inbound
