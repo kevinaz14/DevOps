@@ -335,6 +335,7 @@
       virtual_network: "{{ vm_name }}_vnFrontend"
       subnet: "{{ vm_name }}_subnetFrontend"
       security_group: "{{ vm_name }}_nsgFrontend"
+      public_ip_address_name: "{{ vm_name }}_publicIPAnsible"
       
   - name: Create VM WMA-Ansible
     azure_rm_virtualmachine:
