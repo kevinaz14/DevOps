@@ -31,5 +31,26 @@
       lineinfile:
         path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
         regexp: 'admin_password='
-        line: 'admin_password=P@ssw0rd2018'
-        owner: root       
+        line: 'admin_password=Test123456789!'
+        owner: root
+    - name: Change inventory file
+      lineinfile:
+        path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
+        regexp: 'pg_password='
+        line: 'pg_password=Test123456789!'
+        owner: root
+    - name: Change inventory file
+      lineinfile:
+        path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
+        regexp: 'rabbitmq_password='
+        line: 'rabbitmq_password=Test123456789!'
+        owner: root
+    - name: Insert a line at the end of a file.
+      lineinfile:
+        path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
+        line: 'rabbitmq_port=5672'
+    - name: Insert a line at the end of a file.
+      lineinfile:
+        path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
+        line: 'rabbitmq_vhost=tower'
+
