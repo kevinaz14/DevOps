@@ -3,7 +3,7 @@
   become: true
   tasks:
     - name: install pip
-      command: apt-get install python-pip
+      command: apt-get install python-pip -y
       become: true
     - name: install pexpect
       pip:
