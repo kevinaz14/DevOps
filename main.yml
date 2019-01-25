@@ -461,4 +461,98 @@
       allow_virtual_network_access: true
       allow_forwarded_traffic: false
       
-  ignore_errors: yes     
+  ignore_errors: yes
+  
+- name: AnsibleTower  
+  hosts: ansibletower
+  become_user: root
+  become: true
+  tasks:
+    - name: Install software properties
+      become: true
+      command: apt-get install software-properties-common
+    - name: Add repository
+      apt_repository: repo='ppa:ansible/ansible' state=present
+      become: true
+    - name: Update
+      become: true
+      command: apt-get update
+    - name: Install Ansible
+      become: true
+      command: apt-get install ansible -y
+    - name: Download Tower
+      become: true
+      command: wget "https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz"
+    - name: Extract folder
+      become: true
+      command: tar xvzf ansible-tower-setup-latest.tar.gz
+    - name: Change inventory file
+      lineinfile:
+        path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
+        regexp: 'admin_password='
+        line: 'admin_password=Test123456789!'
+        owner: root
+    - name: Change inventory file
+      lineinfile:
+        path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
+        regexp: 'pg_password='
+        line: 'pg_password=Test123456789!'
+        owner: root
+    - name: Change inventory file
+      lineinfile:
+        path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
+        regexp: 'rabbitmq_password='
+        line: 'rabbitmq_password=Test123456789!'
+        owner: root
+    - name: Insert a line at the end of a file.
+      lineinfile:
+        path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
+        line: 'rabbitmq_port=5672'
+    - name: Insert a line at the end of a file.
+      lineinfile:
+        path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
+        line: 'rabbitmq_vhost=tower'
+    - name: Install Tower
+      become: true
+      command: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/./setup.sh
+      
+- name: Create Azure VM
+  hosts: localhost
+  connection: local
+  vars:
+    resource_group: zuyrg00003
+    vm_name: WMA
+    location: westeu
+    
+  tasks:
+  - name: Create Network Security Group Frontend
+    azure_rm_securitygroup:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}_nsgFrontend"
+      rules:
+        - name: HTTPandHTTPS
+          protocol: Tcp
+          destination_address_prefix:
+            - '10.0.1.4'
+            - '10.0.1.5'
+            - '10.0.1.7'
+          destination_port_range:
+            - 80
+            - 443
+          access: Allow
+          priority: 102
+          direction: Inbound
+        - name: RDPinbound
+          protocol: Tcp
+          destination_address_prefix:
+            - '10.0.1.6'
+          destination_port_range: 3389
+          access: Allow
+          priority: 1001
+          direction: Inbound
+        - name: Ansible
+          protocol: Tcp
+          destination_port_range: 22
+          access: Deny
+          priority: 1002
+          direction: Inbound
