@@ -33,4 +33,6 @@
         regexp: 'admin_password='
         line: 'admin_password='P@ssw0rd2018''
         owner: root
+        
+      ignore_errors: yes
 
