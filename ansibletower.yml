@@ -2,7 +2,7 @@
   become_user: root
   become: true
   tasks:
-    - name install pexpect
+    - name: install pexpect
       pip:
         name: pexpect
       become: yes
