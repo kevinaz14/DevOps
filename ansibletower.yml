@@ -20,4 +20,4 @@
       command: apt-get update
     - name: Install Ansible
       become: true
-      command: apt-get install ansible
+      command: apt-get install ansible -y
