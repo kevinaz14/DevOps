@@ -1,11 +1,14 @@
 - hosts: ansibletower
-  become: true
   tasks:
     - name: Install software properties
+      become: true
       command: apt-get install software-properties-common
     - name: Add repository
+      become: true
       command: apt-add-repository ppa:ansible/ansible
     - name: Update
+      become: true
       command: apt-get update
     - name: Install Ansible
+      become: true
       command: apt-get install ansible
