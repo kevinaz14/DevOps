@@ -29,7 +29,7 @@
       command: tar xvzf ansible-tower-setup-latest.tar.gz
     - name: Change inventory file
       lineinfile:
-        path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1
+        path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
         regexp: 'admin_password='
         line: 'admin_password=P@ssw0rd2018'
         owner: root       
