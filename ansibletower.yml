@@ -1,5 +1,14 @@
 - hosts: ansibletower
   tasks:
-    - name: Install IIS (Web-Server only)
-      win_feature:
-        name: Web-Server
+    - name: Install software properties
+      command: apt-get install software-properties-common
+      become: true
+    - name: Add repository
+      command: apt-add-repository ppa:ansible/ansible
+      become: true
+    - name: Update
+      command: apt-get update
+      become: true
+    - name: Install Ansible
+      command: apt-get install ansible
+      become: true
