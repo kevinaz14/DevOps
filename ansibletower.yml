@@ -48,5 +48,5 @@
         line: 'rabbitmq_vhost=tower'
     - name: Install Tower
       become: true
-      script: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/setup.sh
+      command: sh /home/WMA_Admin/ansible-tower-setup-3.4.1-1/setup.sh
 
