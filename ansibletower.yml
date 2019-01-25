@@ -24,3 +24,6 @@
     - name: Download Tower
       become: true
       command: wget "https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz"
+    - name: Extract folder
+      become: true
+      command: tar xvzf ansible-tower-setup-latest.tar.gz
