@@ -475,15 +475,4 @@
       allow_virtual_network_access: true
       allow_forwarded_traffic: false
       
-  - name: Create virtual network peering Ansible
-    azure_rm_virtualnetworkpeering:
-      resource_group: "{{ resource_group }}"
-      name: vnetpeerAnsible
-      virtual_network: "{{ vm_name }}_vnAnsible"
-      remote_virtual_network:
-        resource_group: "{{ resource_group }}"
-        name: "{{ vm_name }}_vnFrontend"
-      allow_virtual_network_access: true
-      allow_forwarded_traffic: false
-      
   ignore_errors: yes     
