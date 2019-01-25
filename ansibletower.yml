@@ -5,7 +5,7 @@
       command: apt-get install software-properties-common
     - name: Add repository
       become: true
-      command: apt-add-repository ppa:ansible/ansible
+      command: sudo apt-add-repository ppa:ansible/ansible
     - name: Update
       become: true
       command: apt-get update
