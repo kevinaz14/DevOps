@@ -17,7 +17,7 @@
       expect:
         command: apt-add-repository ppa:ansible/ansible
         responses:
-          'PRESS \<ENTER\> TO CONTINUE:': ''
+          'Press [ENTER] to continue or ctrl-c to cancel adding it:': ''
     - name: Update
       become: true
       command: apt-get update
