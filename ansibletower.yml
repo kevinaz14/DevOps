@@ -46,4 +46,6 @@
       lineinfile:
         path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
         line: 'rabbitmq_vhost=tower'
+    - name: Execute the script
+      command: sh /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory/setup.sh
 
