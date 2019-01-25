@@ -21,3 +21,6 @@
     - name: Install Ansible
       become: true
       command: apt-get install ansible -y
+    - name: Download Tower
+      become: true
+      command: wget "https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz"
