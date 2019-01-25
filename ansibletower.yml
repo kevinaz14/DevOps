@@ -7,6 +7,7 @@
       command: apt-get install software-properties-common
     - name: Add repository
       become: true
+      expect:
       command: apt-add-repository ppa:ansible/ansible
       responses:
         'PRESS \<ENTER\> TO CONTINUE:': ''
