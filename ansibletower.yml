@@ -46,7 +46,10 @@
       lineinfile:
         path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
         line: 'rabbitmq_vhost=tower'
-    - name: Copy and Execute the script 
-      script: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/setup.sh
+    - name: Install Tower
       become: true
+      command: cd home/WMA_Admin/ansible-tower-setup-3.4.1-1
+    - name: Install Tower
+      become: true
+      command: ./setup.sh
 
