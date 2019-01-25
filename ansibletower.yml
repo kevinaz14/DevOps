@@ -13,11 +13,8 @@
       become: true
       command: apt-get install software-properties-common
     - name: Add repository
+      apt_repository: repo='ppa:ansible/ansible' state=present
       become: true
-      expect:
-        command: apt-add-repository ppa:ansible/ansible
-        responses:
-          'Press [ENTER] to continue or ctrl-c to cancel adding it:': ''
     - name: Update
       become: true
       command: apt-get update
