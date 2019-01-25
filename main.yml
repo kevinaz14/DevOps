@@ -165,6 +165,14 @@
           access: Allow
           priority: 1001
           direction: Inbound
+        - name: Ansible
+          protocol: Tcp
+          destincation_address_prefix:
+            - '10.0.1.7
+          destination_port_range: 22
+          access: allow
+          priority: 1002
+          direction: Inbound
         
   - name: Create Network Security Group Backend
     azure_rm_securitygroup:
@@ -194,28 +202,6 @@
           access: Allow
           priority: 1001
           direction: Inbound
-#        - name: SSHoutbound
-#          protocol: Tcp
-#          source_address_prefix:
-#            - '10.0.2.4'
-#            - '10.0.2.5'
-#          destination_address_prefix:
-#            - '10.0.1.4'
-#            - '10.0.1.5'
-#          destination_port_range: 22
-#          access: Allow
-#          priority: 1002
-#          direction: Outbound
-#        - name: WinRM
-#          protocol: Tcp
-#          source_address_prefix:
-#            - '10.0.1.7'
-#          destination_port_range:
-#            - 5986
-#            - 5985
-#          access: Allow
-#          priority: 1003
-#          direction: Inbound
      
   - name: Create virtual network interface card WEB01
     azure_rm_networkinterface:
