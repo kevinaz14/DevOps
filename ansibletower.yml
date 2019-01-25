@@ -2,6 +2,9 @@
   become_user: root
   become: true
   tasks:
+    - name: install pip
+      command: apt-get install python-pip
+      become: true
     - name: install pexpect
       pip:
         name: pexpect
