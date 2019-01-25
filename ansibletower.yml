@@ -27,3 +27,10 @@
     - name: Extract folder
       become: true
       command: tar xvzf ansible-tower-setup-latest.tar.gz
+    - name: Change inventory file
+      - lineinfile:
+        path: /etc/hosts
+        regexp: 'admin_password='
+        line: 'admin_password='P@ssw0rd2018''
+        owner: root
+
