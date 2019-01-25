@@ -31,8 +31,5 @@
       lineinfile:
         path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1
         regexp: 'admin_password='
-        line: 'admin_password='P@ssw0rd2018''
-        owner: root
-        
-      ignore_errors: yes
-
+        line: "admin_password='P@ssw0rd2018'"
+        owner: root       
