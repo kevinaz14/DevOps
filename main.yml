@@ -333,7 +333,7 @@
   - name: Create virtual network interface card WMA-Ansible
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}_NICansible"
+      name: "{{ vm_name }}_NICAnsible"
       virtual_network: "{{ vm_name }}_vnFrontend"
       subnet: "{{ vm_name }}_subnetFrontend"
       security_group: "{{ vm_name }}_nsgFrontend"
