@@ -2,6 +2,10 @@
   become_user: root
   become: true
   tasks:
+    - name install pexpect
+      pip:
+        name: pexpect
+      become: yes
     - name: Install software properties
       become: true
       command: apt-get install software-properties-common
