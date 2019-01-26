@@ -427,17 +427,6 @@
       type_handler_version: 1.9
       settings: '{"commandToExecute": "powershell.exe -ExecutionPolicy ByPass -EncodedCommand {{winrm_enable_script}}"}'
       auto_upgrade_minor_version: true
-
-  - name: Create virtual network peering Frontend
-    azure_rm_virtualnetworkpeering:
-      resource_group: "{{ resource_group }}"
-      name: vnetpeerFrontend
-      virtual_network: "{{ vm_name }}_vnFrontend"
-      remote_virtual_network:
-        resource_group: "{{ resource_group }}"
-        name: "{{ vm_name }}_vnBackend"
-      allow_virtual_network_access: true
-      allow_forwarded_traffic: false
       
   - name: Create virtual network peering Frontend
     azure_rm_virtualnetworkpeering:
