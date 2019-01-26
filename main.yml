@@ -454,8 +454,6 @@
   
 - name: AnsibleTower  
   hosts: ansibletower
-  become_user: root
-  become: true
   tasks:
     - name: Install software properties
       become: true
