@@ -434,7 +434,7 @@
       virtual_network: "{{ vm_name }}_vnFrontend"
       remote_virtual_network:
         resource_group: "{{ resource_group }}"
-        name: "{{ vm_name }}_vnAnsible"
+        name: "{{ vm_name }}_vnBackend"
       allow_virtual_network_access: true
       allow_forwarded_traffic: false
       
