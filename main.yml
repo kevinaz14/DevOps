@@ -371,7 +371,6 @@
       vm_size: Standard_B2s
       storage_account: wmastorageaccountdc01
       os_type: Windows
-      enable_winrm: yes
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
       network_interfaces: "{{ vm_name }}_NICDC01"
