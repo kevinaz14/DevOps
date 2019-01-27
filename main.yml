@@ -7,7 +7,7 @@
     location: westeu
     username: WMA_Admin
     password: P@ssw0rd2018
-    winrm_enable_script: 'https://github.com/ansible/ansible/blob/devel/examples/scripts/ConfigureRemotingForAnsible.ps1'
+    winrm_enable_script: 'C:\Users\kevin\Documents\test.ps1'
   
   tasks:
   - name: Create an availability set
