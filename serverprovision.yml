@@ -31,7 +31,7 @@
         certificate_hash: 712a3ccf4cf6ecb8747722b972ff6b0a291ac2b0
         state: present
         
-- hosts: domeincontrollers
+- hosts: domaincontroller
   tasks:
     - name: Install AD-Domain-Services feature
       win_feature: >
