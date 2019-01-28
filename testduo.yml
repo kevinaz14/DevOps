@@ -3,4 +3,4 @@
     - name: Install Duo Security
       win_package:
         path: https://dl.duosecurity.com/duo-win-login-latest.exe
-        product_id: {AF828DB1-476C-4EDD-BFF1-44456828764F}
+        product_id: '{AF828DB1-476C-4EDD-BFF1-44456828764F}'
