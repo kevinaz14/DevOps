@@ -80,7 +80,6 @@
       
 - hosts: windows
   tasks:
-    - name: Copy Duo Security installer
-      win_copy:
-        src: /home/WMA_Admin/duo-win-login-4.0.1.exe
-        dest: C:\Users\WMA_Admin\Documents\duo-win-login-4.0.1.exe
+    - name: Install Duo Security
+      win_package:
+        path: https://dl.duosecurity.com/duo-win-login-latest.exe
