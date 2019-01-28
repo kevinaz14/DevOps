@@ -77,3 +77,10 @@
     - name: Reboot once Domain Controller is created
       win_reboot:
       when: domain_state.reboot_required
+      
+- hosts: windows
+  tasks:
+    - name: Copy Duo Security installer
+      win_copy:
+        src: /home/WMA_Admin/duo-win-login-4.0.1.exe
+        dest: C:\Users\WMA_Admin\Documents\duo-win-login-4.0.1.exe
