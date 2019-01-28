@@ -467,7 +467,7 @@
       command: apt-get update
     - name: Install pip
       become: true
-      command: apt-get install python-pip
+      command: apt-get install python-pip -y
     - name: Install pywinrm
       become: true
       command: pip install pywinrm
