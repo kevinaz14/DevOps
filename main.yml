@@ -251,7 +251,6 @@
       virtual_network: "{{ vm_name }}_vnFrontend"
       subnet: "{{ vm_name }}_subnetFrontend"
       security_group: "{{ vm_name }}_nsgFrontend"
-      dns_servers: 10.0.2.4
       ip_configurations:
         - name: ipconfig1
           load_balancer_backend_address_pools:
@@ -293,7 +292,6 @@
       virtual_network: "{{ vm_name }}_vnFrontend"
       subnet: "{{ vm_name }}_subnetFrontend"
       security_group: "{{ vm_name }}_nsgFrontend"
-      dns_servers: 10.0.2.4
       ip_configurations:
       - name: ipconfig1
         load_balancer_backend_address_pools:
@@ -361,7 +359,6 @@
       virtual_network: "{{ vm_name }}_vnBackend"
       subnet: "{{ vm_name }}_subnetBackend"
       security_group: "{{ vm_name }}_nsgBackend"
-      dns_servers: 127.0.0.1
       
   - name: Create VM WMADC01
     azure_rm_virtualmachine:
@@ -397,7 +394,6 @@
       virtual_network: "{{ vm_name }}_vnBackend"
       subnet: "{{ vm_name }}_subnetBackend"
       security_group: "{{ vm_name }}_nsgBackend"
-      dns_servers: 10.0.2.4
       
   - name: Create VM WMADB01
     azure_rm_virtualmachine:
