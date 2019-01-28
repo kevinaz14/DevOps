@@ -64,6 +64,7 @@
         
     - name: Reboot    
       win_reboot:
+        post_reboot_delay: 500
       
     - name: Add server to domain
       win_domain_membership:
