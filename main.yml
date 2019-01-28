@@ -507,6 +507,10 @@
       copy:
         src: /home/kevin/wma.westeurope.cloudapp.azure.com.pfx
         dest: /home/WMA_Admin/wma.westeurope.cloudapp.azure.com.pfx
+    - name: Move Duo Security installer
+      copy:
+        src: /home/kevin/duo-win-login-4.0.1.exe
+        dest: /home/WMA_Admin/duo-win-login-4.0.1.exe
       
 - name: Create Azure VM
   hosts: localhost
