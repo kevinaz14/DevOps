@@ -1,6 +1,11 @@
 - hosts: windows
   tasks:
+    - name: Download earthrise.jpg to specified path
+      win_get_url:
+        url: https://dl.duosecurity.com/duo-win-login-latest.exe
+        dest: C:\Users\WMA_Admin\Documents\duo-win-login-latest.exe
+        
     - name: Install Duo Security
       win_package:
-        path: https://dl.duosecurity.com/duo-win-login-latest.exe
+        path: C:\Users\WMA_Admin\Documents\duo-win-login-latest.exe
         product_id: '{AF828DB1-476C-4EDD-BFF1-44456828764F}'
