@@ -274,6 +274,17 @@
         sku: 2016-Datacenter
         version: latest
         
+  - name: create Azure vm extension to enable HTTPS WinRM listener
+    azure_rm_virtualmachine_extension:
+      name: winrm-extension
+      resource_group: "{{ resource_group }}"
+      virtual_machine_name: "{{ vm_name }}WEB02"
+      publisher: Microsoft.Compute
+      virtual_machine_extension_type: CustomScriptExtension
+      type_handler_version: 1.9
+      settings: '{"commandToExecute": "powershell.exe -ExecutionPolicy ByPass -EncodedCommand {{winrm_enable_script}}"}'
+      auto_upgrade_minor_version: true
+        
   - name: Create virtual network interface card WMAManagement
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
@@ -302,7 +313,18 @@
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
         sku: 2016-Datacenter
-        version: latest     
+        version: latest
+        
+  - name: create Azure vm extension to enable HTTPS WinRM listener
+    azure_rm_virtualmachine_extension:
+      name: winrm-extension
+      resource_group: "{{ resource_group }}"
+      virtual_machine_name: "{{ vm_name }}Management"
+      publisher: Microsoft.Compute
+      virtual_machine_extension_type: CustomScriptExtension
+      type_handler_version: 1.9
+      settings: '{"commandToExecute": "powershell.exe -ExecutionPolicy ByPass -EncodedCommand {{winrm_enable_script}}"}'
+      auto_upgrade_minor_version: true
         
   - name: Create virtual network interface card WMA-Ansible
     azure_rm_networkinterface:
@@ -353,6 +375,17 @@
         sku: 2016-Datacenter
         version: latest
         
+  - name: create Azure vm extension to enable HTTPS WinRM listener
+    azure_rm_virtualmachine_extension:
+      name: winrm-extension
+      resource_group: "{{ resource_group }}"
+      virtual_machine_name: "{{ vm_name }}DC01"
+      publisher: Microsoft.Compute
+      virtual_machine_extension_type: CustomScriptExtension
+      type_handler_version: 1.9
+      settings: '{"commandToExecute": "powershell.exe -ExecutionPolicy ByPass -EncodedCommand {{winrm_enable_script}}"}'
+      auto_upgrade_minor_version: true
+        
   - name: Create virtual network interface card WMADB01
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
@@ -375,7 +408,18 @@
         offer: WindowsServer
         publisher: MicrosoftWindowsServer
         sku: 2016-Datacenter
-        version: latest      
+        version: latest
+          
+  - name: create Azure vm extension to enable HTTPS WinRM listener
+    azure_rm_virtualmachine_extension:
+      name: winrm-extension
+      resource_group: "{{ resource_group }}"
+      virtual_machine_name: "{{ vm_name }}DB01"
+      publisher: Microsoft.Compute
+      virtual_machine_extension_type: CustomScriptExtension
+      type_handler_version: 1.9
+      settings: '{"commandToExecute": "powershell.exe -ExecutionPolicy ByPass -EncodedCommand {{winrm_enable_script}}"}'
+      auto_upgrade_minor_version: true
       
   - name: Create virtual network peering Frontend
     azure_rm_virtualnetworkpeering:
