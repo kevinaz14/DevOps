@@ -39,6 +39,11 @@
         include_management_tools=yes
         include_sub_features=yes
         state=present
+        
+    - name: Set a single address on the adapter named Ethernet
+      win_dns_client:
+        adapter_names: Ethernet
+        ipv4_addresses: 127.0.0.1
   
     - name: Create Active Directory Domain Controller
       win_domain:
@@ -49,9 +54,17 @@
     - name: Reboot once Domain Controller is created
       win_reboot:
       when: active_directory_controllers.reboot_required
-      
+         
 - hosts: memberservers
   tasks:
+    - name: Set a single address on the adapter named Ethernet
+      win_dns_client:
+        adapter_names: Ethernet
+        ipv4_addresses: 10.0.2.4
+        
+    - name: Reboot    
+      win_reboot:
+      
     - name: Add server to domain
       win_domain_membership:
         dns_domain_name: wma.local
