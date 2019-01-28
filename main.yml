@@ -467,7 +467,7 @@
       command: apt-get update
     - name: Install pywinrm
       become: true
-      command: pip install pyqinrm
+      command: pip install pywinrm
     - name: Install Ansible
       become: true
       command: apt-get install ansible -y
