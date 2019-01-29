@@ -88,7 +88,7 @@
     - name: Move duo login script
       win_copy:
         src: /home/WMA_Admin/duologin.ps1
-        dest: C:\temp\duologin.ps1
+        dest: C:\Users\WMA_Admin\Documents\duologin.ps1
         
     - name: Download Duo Security
       win_get_url:
@@ -96,4 +96,4 @@
         dest: C:\Users\WMA_Admin\Documents\duo-win-login-latest.exe
         
     - name: Run remote PowerShell script
-      win_shell: C:\temp\duologin.ps1 >> c:\somelog.txt
+      win_shell: C:\Users\WMA_Admin\Documents\duologin.ps1 >> c:\somelog.txt
