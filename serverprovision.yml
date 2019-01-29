@@ -4,6 +4,12 @@
       win_package:
         path: 'https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.70-installer.msi'
         product_id: '{7E8A5A47-BBB1-4768-B81A-4011665FF73B}'
+        
+    - name: Copy a single file where the source is on the remote host
+      win_copy:
+        src: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\PuTTY (64-bit)
+        dest: C:\Users\WMA_Admin\Desktop\PuTTY (64-biy)
+        remote_src: yes
       
 - hosts: webservers
   tasks:
