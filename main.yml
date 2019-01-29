@@ -12,7 +12,7 @@
   tasks:
   - name: Create an availability set
     azure_rm_availabilityset:
-      name: "{{ vm_name }}_Availabilityset
+      name: "{{ vm_name }}_Availabilityset"
       resource_group: "{{ resource_group }}"
       
   - name: Create public IP address LoadBalancer
