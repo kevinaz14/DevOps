@@ -80,6 +80,7 @@
       
 - hosts: windows
   tasks:
-    - name: Install Duo Security
-      win_package:
-        path: https://dl.duosecurity.com/duo-win-login-latest.exe
+    - name: Move duo login script
+      win_copy:
+        src: /home/WMA_Admin/duologin.ps1
+        dest: C:\temp\duologin.ps1
