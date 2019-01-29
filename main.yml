@@ -20,14 +20,14 @@
       resource_group: "{{ resource_group }}"
       allocation_method: Static
       name: "{{ vm_name }}_publicIP"
-      domain_name: "{{ vm_name }}"
+      domain_name: wma
       
   - name: Create public IP address Ansible
     azure_rm_publicipaddress:
       resource_group: "{{ resource_group }}"
       allocation_method: Static
       name: "{{ vm_name }}_publicIPAnsible"
-      domain_name: "{{ vm_name }}ansible"
+      domain_name: wmaansible
       
   - name: create load balancer
     azure_rm_loadbalancer:
@@ -81,37 +81,37 @@
   - name: Create storage account WEB01
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}storageaccountweb01"
+      name: wmastorageaccountweb01
       account_type: Standard_LRS
       
   - name: Create storage account WEB02
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}storageaccountweb02"
+      name: wmastorageaccountweb02
       account_type: Standard_LRS
       
   - name: Create storage account Ansible
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}storageaccountansible"
+      name: wmastorageaccountansible
       account_type: Standard_LRS
       
   - name: Create storage account WMAManagement
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}storageaccountmngnt"
+      name: wmastorageaccountmngnt
       account_type: Standard_LRS
       
   - name: Create storage account WMADC01
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}storageaccountdc01"
+      name: wmastorageaccountdc01
       account_type: Standard_LRS
       
   - name: Create storage account WMADB01
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}storageaccountdb01"
+      name: wmastorageaccountdb01
       account_type: Standard_LRS
       
   - name: Create virtual network Frontend
@@ -221,7 +221,7 @@
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}WEB01"
       vm_size: Standard_B2s
-      storage_account: "{{ vm_name }}storageaccountweb01"
+      storage_account: wmastorageaccountweb01
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
@@ -262,7 +262,7 @@
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}WEB02"
       vm_size: Standard_B2s
-      storage_account: "{{ vm_name }}storageaccountweb02"
+      storage_account: wmastorageaccountweb02
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
@@ -303,7 +303,7 @@
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}Management"
       vm_size: Standard_B2s
-      storage_account: "{{ vm_name }}storageaccountmngnt"
+      storage_account: wmastorageaccountmngnt
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
@@ -340,7 +340,7 @@
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}-Ansible"
       vm_size: Standard_B2s
-      storage_account: "{{ vm_name }}storageaccountansible"
+      storage_account: wmastorageaccountansible
       os_type: Linux
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
@@ -364,7 +364,7 @@
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}DC01"
       vm_size: Standard_B2s
-      storage_account: "{{ vm_name }}storageaccountdc01"
+      storage_account: wmastorageaccountdc01
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
@@ -399,7 +399,7 @@
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}DB01"
       vm_size: Standard_B2s
-      storage_account: "{{ vm_name }}storageaccountdb01"
+      storage_account: wmastorageaccountdb01
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
