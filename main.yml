@@ -306,7 +306,7 @@
       os_type: Windows
       admin_username: "{{ username }}"
       admin_password: "{{ password }}"
-      availability_set: WMAavailabilityset
+      availability_set: "{{ vm_name }}_Availabilityset"
       network_interfaces: "{{ vm_name }}_NICmanagement"
       image:
         offer: WindowsServer
