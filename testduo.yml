@@ -1,9 +1,0 @@
-- hosts: windows
-  tasks:
-    - name: Download Duo Security
-      win_get_url:
-        url: https://dl.duosecurity.com/duo-win-login-latest.exe
-        dest: C:\Users\WMA_Admin\Documents\duo-win-login-latest.exe
-        
-    - name: Run remote PowerShell script
-      win_shell: C:\somescript.ps1 >> c:\somelog.txt
