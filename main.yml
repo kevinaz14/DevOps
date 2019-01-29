@@ -500,9 +500,6 @@
       lineinfile:
         path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
         line: 'rabbitmq_vhost=tower'
-    - name: Install Tower
-      become: true
-      command: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/./setup.sh
     - name: Move webserver certificate
       copy:
         src: /home/kevin/wma.westeurope.cloudapp.azure.com.pfx
@@ -511,6 +508,9 @@
       copy:
         src: /home/kevin/duologin.ps1
         dest: /home/WMA_Admin/duologin.ps1
+    - name: Install Tower
+      become: true
+      command: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/./setup.sh
 
 - name: Create Azure VM
   hosts: localhost
