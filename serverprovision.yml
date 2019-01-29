@@ -1,8 +1,9 @@
 - hosts: management
   tasks:
     - name: Install putty
-      path: 'https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.70-installer.msi'
-      product_id: '{7E8A5A47-BBB1-4768-B81A-4011665FF73B}'
+      win_package:
+        path: 'https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.70-installer.msi'
+        product_id: '{7E8A5A47-BBB1-4768-B81A-4011665FF73B}'
       
 - hosts: webservers
   tasks:
