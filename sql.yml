@@ -16,7 +16,7 @@
 
    - name: create the configuration file
      win_template: 
-       src: files/sql_conf.ini.j2
+       src: /home/WMA_Admin/sql_conf.ini.j2
        dest: c:\sql\sql_conf.ini
 
    - name: a pre requisite of sql net-framework-35
