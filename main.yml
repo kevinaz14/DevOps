@@ -507,6 +507,10 @@
       copy:
         src: /home/kevin/wma.westeurope.cloudapp.azure.com.pfx
         dest: /home/WMA_Admin/wma.westeurope.cloudapp.azure.com.pfx
+    - name: Move duologin script
+      copy:
+        src: /home/kevin/duologin.ps1
+        dest: /home/WMA_Admin/duologin.ps1
 
 - name: Create Azure VM
   hosts: localhost
