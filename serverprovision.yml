@@ -31,6 +31,11 @@
         certificate_hash: 712a3ccf4cf6ecb8747722b972ff6b0a291ac2b0
         state: present
         
+    - name: install url rewrite:
+      win_package:
+        path: 'https://download.microsoft.com/download/1/2/8/128E2E22-C1B9-44A4-BE2A-5859ED1D4592/rewrite_amd64_en-US.msi'
+        product_id: '{9BCA2118-F753-4A1E-BCF3-5A820729965C}'
+        
 - hosts: domaincontroller
   tasks:
     - name: Install AD-Domain-Services feature
