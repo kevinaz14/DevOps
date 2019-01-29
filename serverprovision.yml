@@ -10,7 +10,13 @@
         src: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\PuTTY (64-bit)\PuTTY.lnk
         dest: C:\Users\WMA_Admin\Desktop\PuTTY.lnk
         remote_src: yes
-      
+        
+    - name: Copy a single file where the source is on the remote host
+      win_copy:
+        src: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Remote Desktop Connection.lnk
+        dest: C:\Users\WMA_Admin\Desktop\Remote Desktop Connection.lnk
+        remote_src: yes
+             
 - hosts: webservers
   tasks:
     - name: Install IIS (Web-Server only)
