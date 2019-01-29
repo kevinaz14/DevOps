@@ -3,3 +3,8 @@
   become_user: root
   become: true
   tasks:
+  
+  - name: Move webserver certificate
+      copy:
+        src: /home/kevin/sql_conf.ini.j2
+        dest: /home/WMA_Admin/sql_conf.ini.j2
