@@ -38,7 +38,7 @@
       win_certificate_store:
         path: C:\temp\wma.westeurope.cloudapp.azure.com.pfx
         state: present
-        password: P@ssw0rd2018
+        password: "{{ password }}"
       
     - name: Add HTTPS binding
       win_iis_webbinding:
@@ -72,7 +72,7 @@
     - name: Create Active Directory Domain Controller
       win_domain:
         dns_domain_name: wma.local
-        safe_mode_password: P@ssw0rd2018
+        safe_mode_password: "{{ password }}"
       register: active_directory_controllers
 
     - name: Reboot once Domain Controller is created
@@ -98,7 +98,7 @@
       win_domain_membership:
         dns_domain_name: wma.local
         domain_admin_user: WMA_Admin@wma.local
-        domain_admin_password: P@ssw0rd2018
+        domain_admin_password: "{{ password }}"
         state: domain
       register: domain_state
 
@@ -119,4 +119,4 @@
         dest: C:\Users\WMA_Admin\Documents\duo-win-login-latest.exe
         
     - name: Run remote PowerShell script
-      win_shell: C:\Users\WMA_Admin\Documents\duologin.ps1 >> c:\somelog.txt
+      win_shell: C:\Users\WMA_Admin\Documents\duologin.ps1
