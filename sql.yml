@@ -34,8 +34,8 @@
 
 ### Service Accounts ###
 
-    mssql_base_ldap_path: "cn=Users,dc=CONTOSO,dc=com"
-    domain_controller: WMADC01
+    mssql_base_ldap_path: "cn=Users,dc=WMA,dc=local"
+    domain_controller: WMADB01
 
 # SQL Service Account
 # regex statements used in some steps expect the format of CONTOSO\
