@@ -79,7 +79,7 @@
       win_reboot:
       when: active_directory_controllers.reboot_required
  
-- hosts: Second Domain Controller
+- hosts: seconddomaincontroller
   tasks:
     - name: Set a single address on the adapter named Ethernet
       win_dns_client:
