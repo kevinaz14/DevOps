@@ -483,7 +483,7 @@
       settings: '{"commandToExecute": "powershell.exe -ExecutionPolicy ByPass -EncodedCommand {{winrm_enable_script}}"}'
       auto_upgrade_minor_version: true
       
-      - name: Create virtual network interface card WMADB02
+  - name: Create virtual network interface card WMADB02
     azure_rm_networkinterface:
       resource_group: "{{ resource_group }}"
       name: "{{ vm_name }}_NICDB02"
