@@ -1,3 +1,18 @@
+- hosts: windows
+  tasks:
+    - name: Move duo login script
+      win_copy:
+        src: /home/WMA_Admin/duologin.ps1
+        dest: C:\Users\WMA_Admin\Documents\duologin.ps1
+        
+    - name: Download Duo Security
+      win_get_url:
+        url: https://dl.duosecurity.com/duo-win-login-latest.exe
+        dest: C:\Users\WMA_Admin\Documents\duo-win-login-latest.exe
+        
+    - name: Install Duo Security
+      win_shell: C:\Users\WMA_Admin\Documents\duologin.ps1
+
 - hosts: management
   tasks:
     - name: Install putty
@@ -5,13 +20,13 @@
         path: 'https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.70-installer.msi'
         product_id: '{7E8A5A47-BBB1-4768-B81A-4011665FF73B}'
         
-    - name: Copy a single file where the source is on the remote host
+    - name: Copy shortcut Putty to Desktop
       win_copy:
         src: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\PuTTY (64-bit)\PuTTY.lnk
         dest: C:\Users\WMA_Admin\Desktop\PuTTY.lnk
         remote_src: yes
         
-    - name: Copy a single file where the source is on the remote host
+    - name: Copy shortcut RDP to Desktop
       win_copy:
         src: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Remote Desktop Connection.lnk
         dest: C:\Users\WMA_Admin\Desktop\Remote Desktop Connection.lnk
@@ -24,17 +39,17 @@
         name: Web-Server
         state: present
         
-    - name: create Temp directory
+    - name: Create Temp directory
       win_file:
         path: C:\temp
         state: directory
     
-    - name: Copy certificate
+    - name: Copy certificate fort HTTPS
       win_copy:
         src: /home/WMA_Admin/wma.westeurope.cloudapp.azure.com.pfx
         dest: C:\temp\wma.westeurope.cloudapp.azure.com.pfx
         
-    - name: import certificate
+    - name: Import certificate for HTTPS
       win_certificate_store:
         path: C:\temp\wma.westeurope.cloudapp.azure.com.pfx
         state: present
@@ -50,7 +65,7 @@
         certificate_hash: 712a3ccf4cf6ecb8747722b972ff6b0a291ac2b0
         state: present
         
-    - name: install url rewrite
+    - name: Install url rewrite
       win_package:
         path: 'https://download.microsoft.com/download/1/2/8/128E2E22-C1B9-44A4-BE2A-5859ED1D4592/rewrite_amd64_en-US.msi'
         product_id: '{9BCA2118-F753-4A1E-BCF3-5A820729965C}'
@@ -81,7 +96,7 @@
  
 - hosts: seconddomaincontroller
   tasks:
-    - name: Set a single address on the adapter named Ethernet
+    - name: Set the Domain Controller as DNS Server
       win_dns_client:
         adapter_names: Ethernet
         ipv4_addresses: 10.0.2.4
@@ -97,12 +112,12 @@
     - name: Reboot    
       win_reboot:
       
-    - name: Wait 300 seconds, but only start checking after 60 seconds
+    - name: Wait 300 seconds, but only start checking after 240 seconds
       wait_for_connection:
         delay: 240
         timeout: 300
         
-    - name: ensure a server is a domain controller
+    - name: Add Second domaincontroller
       win_domain_controller:
         dns_domain_name: wma.local
         domain_admin_user: WMA_Admin@wma.local
@@ -112,7 +127,7 @@
         
 - hosts: memberservers
   tasks:
-    - name: Set a single address on the adapter named Ethernet
+    - name: Set the Domain Controller as DNS Server
       win_dns_client:
         adapter_names: Ethernet
         ipv4_addresses: 10.0.2.4
@@ -128,12 +143,12 @@
     - name: Reboot    
       win_reboot:
       
-    - name: Wait 300 seconds, but only start checking after 60 seconds
+    - name: Wait 300 seconds, but only start checking after 240 seconds
       wait_for_connection:
         delay: 240
         timeout: 300
       
-    - name: Add server to domain
+    - name: Add servers to domain
       win_domain_membership:
         dns_domain_name: wma.local
         domain_admin_user: WMA_Admin@wma.local
@@ -145,47 +160,32 @@
       win_reboot:
       when: domain_state.reboot_required
       
-- hosts: windows
-  tasks:
-    - name: Move duo login script
-      win_copy:
-        src: /home/WMA_Admin/duologin.ps1
-        dest: C:\Users\WMA_Admin\Documents\duologin.ps1
-        
-    - name: Download Duo Security
-      win_get_url:
-        url: https://dl.duosecurity.com/duo-win-login-latest.exe
-        dest: C:\Users\WMA_Admin\Documents\duo-win-login-latest.exe
-        
-    - name: Run remote PowerShell script
-      win_shell: C:\Users\WMA_Admin\Documents\duologin.ps1
-      
 - hosts: databaseserver
   gather_facts: True
   vars:
    sql_instance_name: wma
   tasks:
-    - name: create a directory for installer download
+    - name: Create a directory for installer download
       win_file: 
         path: c:\sql
         state: directory
    
-    - name: create a directory for installer extraction
+    - name: Create a directory for installer extraction
       win_file: 
         path: c:\sql\installer
         state: directory
 
-    - name: a pre requisite of sql net-framework-35
+    - name: A pre requisite of sql net-framework-35
       win_feature:
         name: NET-Framework-Core
         state: present
 
-    - name: check downloaded file exists
+    - name: Check downloaded file exists
       win_stat:
         path: c:\sql\sql_installer.exe
       register: installer_file
 
-    - name: get the installer
+    - name: Get the installer
       win_get_url:
         url: 'http://download.microsoft.com/download/E/A/E/EAE6F7FC-767A-4038-A954-49B8B05D04EB/ExpressAndTools%2064BIT/SQLEXPRWT_x64_ENU.exe'
         dest: 'c:\sql\sql_installer.exe'
