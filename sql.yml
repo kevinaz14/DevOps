@@ -43,7 +43,9 @@
    
    - name: Install MS SQL Server using psexec module
      win_psexec:
-       command: C:\sql\installer\setup.exe /ConfigurationFile=c:\sql\sql_conf.ini /INDICATEPROGRESS=False
+       command:  c:\sql\sql_installer.exe /ConfigurationFile=c:\sql\sql_conf.ini /INDICATEPROGRESS=False
+       username: WMA_Admin
+       password: P@ssw0rd2018
        priority: high
        executable: C:\Users\WMA_Admin\Documents\PSTools\PsExec.exe
       
