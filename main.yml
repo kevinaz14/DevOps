@@ -198,7 +198,7 @@
             - '10.0.2.4'
             - '10.0.2.5'
             - '10.0.2.6'
-            - '10.0.2.7
+            - '10.0.2.7'
           destination_port_range: 3389
           access: Allow
           priority: 1000
