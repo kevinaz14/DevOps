@@ -484,32 +484,38 @@
     - name: Extract folder
       become: true
       command: tar xvzf ansible-tower-setup-latest.tar.gz
-    - name: Change inventory file
-      lineinfile:
-        path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
-        regexp: 'admin_password='
-        line: 'admin_password=Test123456789!'
+    - name: Replace inventory file
+      copy:
+        src: /home/kevin/inventory
+        dest: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
         owner: root
-    - name: Change inventory file
-      lineinfile:
-        path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
-        regexp: 'pg_password='
-        line: 'pg_password=Test123456789!'
-        owner: root
-    - name: Change inventory file
-      lineinfile:
-        path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
-        regexp: 'rabbitmq_password='
-        line: 'rabbitmq_password=Test123456789!'
-        owner: root
-    - name: Insert a line at the end of a file.
-      lineinfile:
-        path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
-        line: 'rabbitmq_port=5672'
-    - name: Insert a line at the end of a file.
-      lineinfile:
-        path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
-        line: 'rabbitmq_vhost=tower'
+    
+    #- name: Change inventory file
+     # lineinfile:
+      #  path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
+       # regexp: 'admin_password='
+        #line: 'admin_password=Test123456789!'
+        #owner: root
+    #- name: Change inventory file
+     # lineinfile:
+    #    path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
+     #   regexp: 'pg_password='
+     #   line: 'pg_password=Test123456789!'
+     #   owner: root
+    #- name: Change inventory file
+     # lineinfile:
+      #  path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
+      #  regexp: 'rabbitmq_password='
+      #  line: 'rabbitmq_password=Test123456789!'
+      #  owner: root
+    #- name: Insert a line at the end of a file.
+     # lineinfile:
+      #  path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
+      #  line: 'rabbitmq_port=5672'
+    #- name: Insert a line at the end of a file.
+      #lineinfile:
+        #path: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/inventory
+        #line: 'rabbitmq_vhost=tower'
     - name: Move webserver certificate
       copy:
         src: /home/kevin/wma.westeurope.cloudapp.azure.com.pfx
