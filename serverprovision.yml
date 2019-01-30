@@ -78,7 +78,38 @@
     - name: Reboot once Domain Controller is created
       win_reboot:
       when: active_directory_controllers.reboot_required
-         
+ 
+- hosts: Second Domain Controller
+  tasks:
+    - name: Set a single address on the adapter named Ethernet
+      win_dns_client:
+        adapter_names: Ethernet
+        ipv4_addresses: 10.0.2.4
+        
+    - name: Reboot    
+      win_reboot:
+      
+    - name: Wait 300 seconds, but only start checking after 60 seconds
+      wait_for_connection:
+        delay: 60
+        timeout: 300
+        
+    - name: Reboot    
+      win_reboot:
+      
+    - name: Wait 300 seconds, but only start checking after 60 seconds
+      wait_for_connection:
+        delay: 240
+        timeout: 300
+        
+    - name: ensure a server is a domain controller
+      win_domain_controller:
+        dns_domain_name: wma.local
+        domain_admin_user: WMA_Admin@wma.local
+        domain_admin_password: "{{ password }}"
+        safe_mode_password: "{{ password }}"
+        state: domain_controller
+        
 - hosts: memberservers
   tasks:
     - name: Set a single address on the adapter named Ethernet
