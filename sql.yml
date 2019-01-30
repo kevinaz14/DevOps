@@ -58,4 +58,4 @@
        name: 'MSSQL${{ sql_instance_name }}'
        force_dependent_services: yes
        state: restarted
-when: win_reg.changed
+     when: win_reg.changed
