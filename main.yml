@@ -192,7 +192,6 @@
             - '10.0.2.4'
             - '10.0.2.5'
             - '10.0.2.6'
-            - '10.0.2.7'
           destination_port_range: 3389
           access: Allow
           priority: 1000
@@ -206,7 +205,6 @@
             - '10.0.2.4'
             - '10.0.2.5'
             - '10.0.2.6'
-            - '10.0.2.7'
           destination_port_range: 22
           access: Allow
           priority: 1001
@@ -218,7 +216,6 @@
             - '10.0.1.5'
           destination_address_prefix:
             - '10.0.2.6'
-            - '10.0.2.7'
           destination_port_range: 1433
           access: Allow
           priority: 1005
