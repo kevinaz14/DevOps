@@ -18,6 +18,13 @@
      win_template: 
        src: /home/WMA_Admin/sql_conf.ini.j2
        dest: c:\sql\sql_conf.ini
+       
+   - name: Disable UAC Filtering for Local Accounts
+     win_regedit: 
+       data: 1
+       datatype: dword
+       key: "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"
+       value: LocalAccountTokenFilterPolicy
 
    - name: a pre requisite of sql net-framework-35
      win_feature:
