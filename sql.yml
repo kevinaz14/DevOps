@@ -41,10 +41,11 @@
       chdir: c:\sql
       creates: c:\sql\installer\setup.exe
    
-   - name: Install the database
-     win_command: c:\sql\installer\setup.exe /configurationfile=c:\sql\sql_conf.ini
-     args:
-      chdir: c:\sql
+   - name: Install MS SQL Server using psexec module
+     win_psexec:
+       command: C:\sql\installer\setup.exe /ConfigurationFile=c:\sql\sql_conf.ini /INDICATEPROGRESS=False
+       priority: high
+       executable: C:\Users\WMA_Admin\Documents\PSTools\PsExec.exe
       
    - name: Add or update registry for ip port
      win_regedit:
