@@ -107,7 +107,7 @@
       name: wmastorageaccountdc01
       account_type: Standard_LRS
       
-  - name: Create storage account WMADC01
+  - name: Create storage account WMADC02
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
       name: wmastorageaccountdc02
@@ -119,7 +119,7 @@
       name: wmastorageaccountdb01
       account_type: Standard_LRS
       
-  - name: Create storage account WMADB01
+  - name: Create storage account WMADB02
     azure_rm_storageaccount:
       resource_group: "{{ resource_group }}"
       name: wmastorageaccountdb02
