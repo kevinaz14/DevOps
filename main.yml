@@ -170,14 +170,6 @@
           access: Allow
           priority: 1001
           direction: Inbound
-        - name: SSH
-          protocol: Tcp
-          destination_address_prefix:
-            - '10.0.1.7'
-          destination_port_range: 22
-          access: Allow
-          priority: 1002
-          direction: Inbound
         
   - name: Create Network Security Group Backend
     azure_rm_securitygroup:
@@ -482,6 +474,20 @@
         name: "{{ vm_name }}_vnFrontend"
       allow_virtual_network_access: true
       allow_forwarded_traffic: false
+      
+  - name: Create Network Security Group Frontend
+    azure_rm_securitygroup:
+      resource_group: "{{ resource_group }}"
+      name: "{{ vm_name }}_nsgFrontend"
+      rules:
+        - name: SSH
+          protocol: Tcp
+          destination_address_prefix:
+            - '10.0.1.7'
+          destination_port_range: 22
+          access: Allow
+          priority: 1002
+          direction: Inbound
       
   ignore_errors: yes
   
