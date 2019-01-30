@@ -424,7 +424,7 @@
   - name: Create VM WMADC02
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
-      name: "{{ vm_name }}DC01"
+      name: "{{ vm_name }}DC02"
       vm_size: Standard_B2s
       storage_account: wmastorageaccountdc02
       os_type: Windows
