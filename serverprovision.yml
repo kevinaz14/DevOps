@@ -125,6 +125,14 @@
         safe_mode_password: "{{ password }}"
         state: domain_controller
         
+    - name: Reboot    
+      win_reboot:
+      
+    - name: Wait 300 seconds, but only start checking after 240 seconds
+      wait_for_connection:
+        delay: 240
+        timeout: 300
+        
 - hosts: memberservers
   tasks:
     - name: Set the Domain Controller as DNS Server
