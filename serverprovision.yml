@@ -52,7 +52,7 @@
     - name: Copy web.config
       win_copy:
         src: /home/WMA_Admin/web.config
-        dest: C:\initpub\wwwroot\web.config
+        dest: C:\Inetpub\wwwroot\web.config
         
     - name: Import certificate for HTTPS
       win_certificate_store:
