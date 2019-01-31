@@ -544,6 +544,11 @@
         src: /home/kevin/duologin.ps1
         dest: /home/WMA_Admin/duologin.ps1
         
+    - name: Move WebConfig
+      copy:
+        src: /home/kevin/web.config
+        dest: /home/WMA_Admin/web.config
+        
     - name: Install Tower
       become: true
       command: /home/WMA_Admin/ansible-tower-setup-3.4.1-1/./setup.sh
