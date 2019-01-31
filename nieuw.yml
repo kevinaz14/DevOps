@@ -1,0 +1,34 @@
+- hosts: memberservers
+  tasks:
+    - name: Set the Domain Controller as DNS Server
+      win_dns_client:
+        adapter_names: Ethernet
+        ipv4_addresses: 10.0.2.4
+        
+    - name: Reboot    
+      win_reboot:
+      
+    - name: Wait 300 seconds, but only start checking after 60 seconds
+      wait_for_connection:
+        delay: 60
+        timeout: 300
+        
+    - name: Reboot    
+      win_reboot:
+      
+    - name: Wait 300 seconds, but only start checking after 240 seconds
+      wait_for_connection:
+        delay: 240
+        timeout: 300
+      
+    - name: Add servers to domain
+      win_domain_membership:
+        dns_domain_name: wma.local
+        domain_admin_user: WMA_Admin@wma.local
+        domain_admin_password: "{{ password }}"
+        state: domain
+      register: domain_state
+
+    - name: Reboot once Domain Controller is created
+      win_reboot:
+        when: domain_state.reboot_required
